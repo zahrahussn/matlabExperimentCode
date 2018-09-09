@@ -1,0 +1,1 @@
+function [images] = rotateimages(images)% function [images] = rotateimages(images)if nargin,	names = fieldnames(images);	numimages = length(names);	for i = 1:numimages		eval(['images.',names{i},' = rot90(rot90(images.',names{i},'));']);	endelse	images = [];endreturn

@@ -1,0 +1,1 @@
+randn('state',sum(100*clock)); % initialize the random number generatornpats=10; % number of patternsdim=128; % size of patterns is dim x dim pixelslowf=4; highf=8;bpf=bpfilter((lowf-1),(highf+1),dim);cvar=0.1; vlow=-0.90; vhigh=0.90;for kk=1:npats	ni=noise2d(dim,cvar,vlow,vhigh);	fn=bpfilter(ni,bpf,0);	v=	

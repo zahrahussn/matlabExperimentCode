@@ -1,0 +1,1 @@
+function [c] = threshold(Nm, Next, g, Na, b, d)% calculates contrast threshold for Lu and Dosher's modelc = (((1+Nm^2)*Next^(2*g)+Na^2)/b^(2*g)*((1/d^2)-Nm^2))^(1/2*g);

@@ -1,0 +1,1 @@
+Nm = .5;g = 1.1;Na = .2;b = 1;d = .5;for i = 1:10000	Next = i/1000;	[c] = threshold(Nm, Next, g, Na, b, d);	PlotArray(i,1) = Next;	PlotArray(i,2) = c;end% plot(PlotArray(1:100,1),PlotArray(1:100,2));loglog(PlotArray(:,1),PlotArray(:,2));xlabel('external noise');ylabel('contrast');

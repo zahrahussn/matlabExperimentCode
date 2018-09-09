@@ -1,0 +1,1 @@
+window=SCREEN(0,'OpenWindow');% opens onscreen window[clearscreen,clearrect]=SCREEN(0,'OpenOffscreenWindow')% opens offscreen windowclut = [0:255]'*[1 1 1]% 1 transposed column times 3 ca

@@ -1,0 +1,1 @@
+ [calibration,screens,offscrPtrs,offscrCluts,OnScreenRect,clut] = OpenScreenz(0);  kbwait; ca;

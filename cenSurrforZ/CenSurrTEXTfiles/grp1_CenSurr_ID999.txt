@@ -1,0 +1,18 @@
+
+Date: 30-Nov-2009
+File: grp1_CenSurr_ID999.txt
+Experiment: CenSurr
+Subject ID: 999
+Gender: 
+Age: 
+Group 1
+Comment: 
+Vertical or horizontal: h
+Matlab workspace stored in file: grp1_CenSurr_ID999_S_N1
+
+
+DATA
+contrast	 sp freq	 size (Deg)	 gaussSD	 dir	 resp	   scID	 curDur	  correct
+
+
+
