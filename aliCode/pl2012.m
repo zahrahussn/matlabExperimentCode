@@ -23,9 +23,7 @@
     defarg('mainscrs',max(screenNumbers)); % this is the screen upon which the image is to be displayed.
     %swidth=1024; sheight=768; pixelsize=8; hz=85;% should be the same as settings during calibration; should be stored with calibration file, but currently are not
     %res=NearestResolution(mainscrs,swidth,sheight,hz,pixelsize);
-    %swidth=1680; sheight=1050; pixelsize=8; hz=85;% should be the same as settings during calibration; should be stored with calibration file, but currently are not
-    swidth=1280; sheight=1024; pixelsize=8; hz=75;% should be the same as settings during calibration; should be stored with calibration file, but currently are not
-    
+    swidth=1680; sheight=1050; pixelsize=8; hz=85;% should be the same as settings during calibration; should be stored with calibration file, but currently are not
     % scrinfo=screen('resolution',0,1680,1050,[],32); % changed Nov 30/09, compatible with OSX nott work computer, ZH
     %scrinfo=screen(mainscrs,'resolution',res);
     % displayrate=framerate(mainscrs); % frame-rate of the monitor in Hertz
@@ -339,13 +337,12 @@
     oldResolution = Screen('Resolution', mainscrs, screenWidth, screenHeight, screenFrequency, screenPxSize);
 
     % calibrate monitor
-    scrinfo.calfile     = 'curCalRecTmpFileADJUSTED.mat';
-    %scrinfo.calfile     = 'pacemaker_1280x1024_85hz_Feb2013.mat';
+    scrinfo.calfile     = 'pacemaker_1280x1024_85hz_Feb2013.mat';
     calfitrec           = pbReadCalibrationFile(scrinfo.calfile);
     % load calfitrec;
     avgLum = calfitrec.lmaxminave(3);
-    cmin=(calfitrec.lmaxminave(2)-calfitrec.lmaxminave(3))/calfitrec.lmaxminave(3);
-    cmax=(calfitrec.lmaxminave(1)-calfitrec.lmaxminave(3))/calfitrec.lmaxminave(3);
+    cmin=calfitrec.lmaxminave(2);
+    cmax=calfitrec.lmaxminave(1);
     L=calfitrec.caldata(:,5);
     B=calfitrec.caldata(:,4);
     rgbMat=calfitrec.caldata(:,1:3);
@@ -435,8 +432,8 @@
     starttime=GetSecs;
 
     % light adapt OSX
-%     adaptTime = adaptseconds;
-%     adaptpause(w,wrect,adaptTime,0);
+    adaptTime = adaptseconds;
+    adaptpause(w,wrect,adaptTime,0);
 
     err=snd('Open'); % open the sound buffer
     err=snd('Play',introsnd,SND_RATE); err=snd('Play',corrsnd,SND_RATE); err=snd('Play',wrongsnd,SND_RATE);
@@ -529,14 +526,19 @@ while ((alldone==0)&(quitflag==0))
         curStim = stimList(tt,4);
         condID = stimList(tt,3);
         contrastID = stimList(tt,2);
-
- 	nzvar=constimrec(condID).appspec;	% noise variance
- 	[stim,nzseed]=noise2d(stimpix,nzvar,cmin,cmax,0);
+	
+%     gotone=0;
+% 	while (gotone==0)
+% 		condID=ran(exptdesign.numnz);
+% 		if (~psyfuncfinished(constimrec(condID))) gotone=1; end;
+% 	end;
+	
+	nzvar=constimrec(condID).appspec;	% noise variance
+	[stim,nzseed]=noise2d(stimpix,nzvar,-1,1,0);
     curStimVariance = constimrec(condID).values(contrastID);
 % 	curStimVariance=constimGetValue(constimrec(condID)); % get the stimulus variance for the current method-of-constant-stimuli record
 	tmpStim=theStim(curStim).stim*sqrt(curStimVariance); % this formula works because the faces have a variance of 1
 	finalStim=stim+tmpStim; % add noise to face
-%    finalStim=tmpStim; % add noise to face
     
     
     tmpStimLum=avgLum*(1+finalStim); % convert image from contrast to luminance values
@@ -575,7 +577,46 @@ while ((alldone==0)&(quitflag==0))
         Screen('FillRect',w,[160 160 160])
         intTime=Screen('Flip',w);
     end;
+      
+    %OS 9 method of converting image to CLUT values; replaced with OSX
+    %version above (lines after stim=stim+tmpface).
+    % this is the routine that makes a pixel image and a CLUT for display.
+	% the first index in the clut is always reserved for average luminance.
+	% remember that the routine expects the image in terms of *contrast*.
+	
+    %[currimage,currCLUT]=makeimage(stim,cal,0);  OS9 method of converting
+	%image, now using pbBitstealing for OSX
+	%screen(offscrptrs(1),'PutImage',currimage); % store in offscreen pixel map
+	
+        
+ %   trialStartTime=GetSecs;
+ %   gotime=stime+exptdesign.intertrial; % wait here
+	
+%	while (GetSecs<gotime) end;
     
+% 	screen(screens(1),'WaitBlanking'); % wait 1 frame
+% 	screen(screens(1),'FillOval',0,fixpnt); % erase fixation point
+% 	screen(screens(1),'WaitBlanking',fixpntoffsetframes-1); % wait for the correct number of frames
+% 	screen(screens(1),'SetClut',currCLUT,0); % write to clut and return 1 frame later
+% 	screen(screens(1),'FrameRect',1,boxrect); % draw the stimulus box
+%   screen('CopyWindow',offscrptrs(1),screens(1),stimrect,destrect);
+% 	screen(screens(1),'WaitBlanking',stimframes); % wait for the correct number of frames
+% 	screen(screens(1),'FillRect',0,destrect); % fill destrect with avg lum
+% 	screen(screens(1),'FrameRect',0,boxrect); % erase the stimulus box
+% 	stimofftime=getsecs;
+% 	screen(screens(1),'WaitBlanking'); % wait 1 frame
+% 	screen(screens(1),'SetClut',defaultCLUT,0);
+% 	screen(screens(1),'FillOval',1,fixpnt); % draw fixation point
+
+
+%     vbl=GetSecs;
+%     vblendtime = vbl + 0.1; % vbl + 1
+%     while (vbl < vblendtime)
+%     Screen('FillRect',w, [160 160 160]);
+% %     Screen('glPoint',w,0,fixPntX,fixPntY,8);
+%     [vbl]=Screen('Flip', w); 
+%     end;
+        
      
     %draw thumbnail images OS X
     time1=GetSecs;
@@ -596,7 +637,13 @@ while ((alldone==0)&(quitflag==0))
         theX = fixPntX+1024; % if dual screen, ensures mouse is on the 2nd screen
     end
     SetMouse(theX,theY);
-
+% 		while 1
+% 			SetMouse(theX,theY);
+% 			[checkX,checkY] = GetMouse;
+% 			if (checkX==theX) & (checkY==theY)
+% 				break;
+% 			end
+% 		end
     showcursor(0); gotresponse=0; response=0;
     while (gotresponse==0)
         [x,y,buttons]=GetMouse(w);
@@ -668,6 +715,192 @@ while ((alldone==0)&(quitflag==0))
 end; % while ((alldone==0)&(quitflag==0))
 
 
+    
+    
+%     blockNum = groupID;
+% 
+%     while alldone==0 && quitflag==0
+%         stime = GetSecs; % get start time for this trial; will use this later
+%     %     tmpNumStim = exptdesign.numnz * exptdesign.numStim;
+%         tmpNumStim = exptdesign.numnz * numContrast;
+%         if alldone==0 && quitflag==0;
+%             for kk = 1:blockNum
+%                 stimBlock(:,1) = randperm(21);
+%                 stimBlock = sortrows(stimBlock,1);
+% %             stimOrder = randperm(tmpNumStim);
+%             if alldone==0 && quitflag==0;
+%                 for ii = 1:length(stimBlock);
+%                     condID = stimBlock(3,ii);
+%                     curStim=randomcondition(exptdesign.numStim);
+%                     nzvar=constimrec(condID).appspec;	% noise variance
+%                     [stim,nzseed]=noise2d(stimpix,nzvar,-1,1,0);
+%                     curStimVariance=constimGetValue(constimrec(condID)); % get the stimulus variance for the current method-of-constant-stimuli record
+%                     tmpStim=theStim(curStim).stim*sqrt(curStimVariance); % this formula works because the faces have a variance of 1
+%                     finalStim=stim+tmpStim; % add noise to face
+%                     tmpStimLum=avgLum*(1+finalStim); % convert image from contrast to luminance values
+%                     tmpStimBS=pbLum2BS(tmpStimLum,L,B);  % bits-stealing 
+%                     tmpStimFinal=pbBitstealing2RGB(tmpStimBS, rgbMat,0); % bit-stealing to RGB
+%                     dstRect=[0 0 256 256]; % destination rect
+%                     dstRect=CenterRect(dstRect, wrect); % dest rect centered
+%                     srcRect=[0 0 256 256]; % source rect, whatever that is
+%                     Stim=Screen('MakeTexture', w, tmpStimFinal); % pre- DrawTexture preparation
+% 
+%                     trialStartTime=GetSecs;
+%                     gotime=stime+exptdesign.intertrial; % wait here
+% 
+%                     while (GetSecs<gotime) end;
+% 
+%                     time0=GetSecs;
+%                     timeStim=time0+.2;
+%                     while(time0<timeStim)
+%                     Screen('DrawTexture', w, Stim, srcRect, dstRect);  % actually putting the image on the screen
+%                     Screen('FrameRect', w, 10, boxrect, 1); % putting the frame around the stim on the screen
+%                     [time0]= Screen('Flip', w); % making it appear
+%                     end
+%                     stimofftime=GetSecs;
+% 
+%                     intTime=GetSecs;
+%                     intTime2=intTime+.100;
+%                     while intTime<intTime2
+%                         Screen('FillRect',w,[160 160 160])
+%                         intTime=Screen('Flip',w);
+%                     end;
+% 
+%                     vbl=GetSecs;
+%                     vblendtime = vbl + 1;
+%                     while (vbl < vblendtime)
+%                     Screen('FillRect',w, [160 160 160]);
+%                     Screen('glPoint',w,0,fixPntX,fixPntY,8);
+%                     [vbl]=Screen('Flip', w); 
+%                     end;
+% 
+% 
+%                     %draw thumbnail images OS X
+%                     time1=GetSecs;
+%                     timeThumb=time1+.1;
+%                     while(time1<timeThumb)
+%                         Screen('DrawTextures', w, thumbnailptrs, thumbrect, thumbdests);
+%                         Screen('glPoint',w,0,fixPntX,fixPntY,8);
+%                         [time1]=Screen('Flip', w);
+%                     end;
+% 
+%                     FlushEvents('keyDown');
+%                     FlushEvents('mouseDown');
+%                     FlushEvents('mouseUp');
+%                     % center the mouse on the fixation point
+%                     theX=fixpnt(rectleft)+round(rectwidth(fixpnt)/2);
+%                     theY=fixpnt(recttop)+round(rectheight(fixpnt)/2);
+%                     if mainscrs==1
+%                         theX = fixPntX+1024; % if dual screen, ensures mouse is on the 2nd screen
+%                     end
+%                     SetMouse(theX,theY);
+%                     showcursor(0); gotresponse=0; response=0;
+%                     while (gotresponse==0)
+%                         [x,y,buttons]=GetMouse(w);
+%                         if autopilot==1
+%                             gotresponse=1; response=randi(10);
+%                         else
+%                             for kk=1:exptdesign.numStim
+%                                 if (isinrect(x,y,thumbdest(kk,:))) && sum(buttons(:))==1;
+%                                     gotresponse=1; response=kk;
+%                                 end; % if
+%                             end; % for
+%                         end
+% 
+%                         [keyIsDown, secs, keyCode] = KbCheck;
+%                         if keyIsDown==1 && keyCode(escapeKey)==1
+%                             gotresponse=1;
+%                             quitflag=1;
+%                         end
+% 
+%                     end; % while
+% 
+%                     hidecursor; % this hides the mouse cursor
+% 
+%                     if quitflag==1 break; end;
+% 
+%                     rlatency=getsecs-stimofftime;
+% 
+%                     %erase thumbnail images OSX
+%                     Screen('FillRect',w, [160 160 160]);
+%                     timeInterval=GetSecs;
+%                     timeInterval2=GetSecs+.500;
+%                     while timeInterval<timeInterval2
+%                         Screen('FillRect',w,[160 160 160]);
+%                         timeInterval=Screen('Flip',w);
+%                     end;
+% 
+%                     if (response > 0)
+%                         correct=(response==curStim);
+%                         constimrec(condID)=psyfuncUpdate(constimrec(condID),correct); % update the constant stimuli data structure
+%                         if correct
+%                             % sound(corrsnd);
+%                             err=snd('Play',corrsnd,SND_RATE);
+%                         else
+%                             % sound(wrongsnd);
+%                             err=snd('Play',wrongsnd,SND_RATE);
+%                         end;
+%                     end; % if (response > 0) & (condID>0)
+% 
+%                     if (response>0)
+%                         data(curtrial,:)=[curtrial,condID,nzvar,curStimVariance,curStim,response,correct,rlatency,nzseed']; % update data matrix
+%                         curtrial=curtrial+1; % increment trial counter
+%                     end; % if (response > 0)
+% 
+%                 % END OF TRIAL...
+%                     tmpdone=1;
+%                     for kk=1:exptdesign.numnz
+%                         if ~psyfuncfinished(constimrec(kk))
+%                             tmpdone=0;
+%                             break;
+%                         end;
+%                     end;
+%                     alldone=tmpdone;
+%                 end; % for stimOrder
+%                end; % if ((alldone==0)&(quitflag==0))
+%             end; % for blockNum
+%         end; % if ((alldone==0)&(quitflag==0))
+%     end; % while ((alldone==0)&(quitflag==0))
+
+
+    %%
+    err=snd('Close'); % close the sound buffer here
+    sca;
+
+    showcursor(0);
+    close all;	% close the screen and data file. this is a wrapper around brainard that closes 
+    % all of the active windows and any text data file that may have been
+    % opened but not closed during the routine.
+    % sound(introsnd);
+
+    %% restore original resolution
+    exptResolution = Screen('Resolution', mainscrs, oldResolution.width, oldResolution.height, oldResolution.hz, oldResolution.pixelSize);
+
+
+    %%
+    endtime=GetSecs;
+    % oldOn=fileshare(oldOn); % re-set filesharing
+    disp(['Elapsed time = ',num2str((endtime-starttime)/60),' minutes']);
+    if (quitflag) disp('The experiment was aborted by the subject.'); end;
+
+    % close the screen and data file. this is a wrapper around brainard that closes 
+    % all of the active windows and any text data file that may have been
+    % opened but not closed during the routine.
+    close all;	
+
+%     % fit psychometric functions to the data from each external-noise condition
+%     alpha=zeros(1,numnz); beta=zeros(1,numnz); threshold=zeros(1,numnz); goodestimate=zeros(1,numnz);
+%     for kk=1:numnz
+%         if (sum(constimrec(kk).trialcount)>=mintrialforthreshold)
+%             tmpdata=constimrec(kk).trialdata;
+%             [alpha(kk),beta(kk)]=fitpsymet(tmpdata,'weibull',[thresholdguess(kk),psybeta],psygamma,psydelta);
+%             threshold(kk)=getthresh(thresholdlevel,'weibull',[alpha(kk),beta(kk)],psygamma,psydelta);
+%             disp(['condition ',num2str(kk),'; alpha = ',num2str(alpha(kk)),'; beta = ',num2str(beta(kk)),'; ',num2str(thresholdlevel*100),'% correct threshold = ',num2str(threshold(kk))]);
+%             goodestimate(kk)=1;	
+%         else
+%             disp(['condition ',num2str(kk),': not enough trials to compute threshold']);
+%         end;
+%     end;
 
 
     %% trialswritefile;
