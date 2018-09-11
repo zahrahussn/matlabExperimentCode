@@ -6,11 +6,12 @@
     clear all; % clear workspace
     
     debug=false;
-     if debug
+    if debug
         rect0=[0,0,500,300];
     else
         rect0=[];
-     end
+    end
+    useSnd = true;
     
      % other method = bitStealing; zh april 22, 2018, with help from jb
     calibrationMethod='psychophysical';
@@ -33,14 +34,13 @@
     displayrate=Screen('FrameRate',mainscrs);
 
     % file & directory names names
-    defarg('detectTEXTfolder','detectLowTEXTfiles');	% N.B. make sure this folder exists within the folder containing 'trialslab'!
-    defarg('detectMATfolder','detectLowMATfiles');		% N.B. make sure this folder exists within the folder containing 'trialslab'!
+    defarg('detectTEXTfolder','detectTEXTfiles');	% N.B. make sure this folder exists within the folder containing 'trialslab'!
+    defarg('detectMATfolder','detectMATfiles');		% N.B. make sure this folder exists within the folder containing 'trialslab'!
 
     % set the paths
     disp('setting path names...');
-    mfilename='detectLow'; mainfile = [mfilename,'.m'];
+    mfilename='detect'; mainfile = [mfilename,'.m'];
     eval(['mainpath=which(',QuoteString(mainfile),');']);
-    mainpath=strrep(mainpath,'experimentCode', 'data'); % modified sept 10, 2018 for github rearrangement
     mainpath = mainpath(1:end-length(mainfile));
     textdatadir=[mainpath,detectTEXTfolder];
     matdatadir=[mainpath,detectMATfolder];
@@ -51,6 +51,13 @@
     defarg('vd',114);			
     defarg('stimpix',256);		% size of stimulus in pixels
     
+    %parameters for fitting weibulls and calculating threshold
+    psygamma=1/2; % should be set to 1/N, where N is the number of stimulus alternatives (i.e., guessing rate)
+    psydelta=0.01;
+    psybeta=1.5;
+    thresholdlevel=0.75;
+    mintrialforthreshold=20; % min number of thresholds needed to make an attempt to fit a psychometric function to a data set; the data are (zh) still stored in a file
+
     % external noise variances
     nv = [0.01, 0.1];				% external noise variances (low, medium, & high)
     numnz=length(nv);	% number of external noises
@@ -58,20 +65,19 @@
     % parameters for method of constant stimuli  
     defarg('numvalues',7); % # of stimulus levels (i.e., contrast variance) used in each condition
     numContrast = numvalues;
-    defarg('trialspervalue',[1,12,20]); % # of trials per contrast level
+    defarg('trialspervalue',[1,20,40]); % # of trials per contrast level
     defarg('stepsperlogunit',10);
     % defarg('thresholdguess',[0.00001,0.0015,0.003]);
     % defarg('thresholdguess',3*nv/40); % these seem to be about right
-    %thresholdguess=[0.00002, 0.00012]; %  high noise guess 0.0002 for subject fm, lowered for andy
-    thresholdguess=[0.000009, 0.00012]; %Value changed on July 10th 2018
-    
+    thresholdguess=[0.00002, 0.00012]; %  high noise guess 0.0002 for subject fm, lowered for andy
+
     for kk=1:numnz
 %         tmp=thresholdguess(kk)/sqrt(10);
 %         values(kk,:)=logspace(log10(tmp),log10(10*tmp),numvalues); % set (n=numvalues) of log-spaced values centered on thresholdguess
 %         constimrec(kk)=constimInit(values(kk,:),trialspervalue(1)); % init the constantstimulus struct
 %         constimrec(kk).appspec=nv(kk);	% attached noise variance to app-specific field
         tmp=thresholdguess(kk);
-        highval=log10(tmp)+log10(sqrt(8)); % default 50 
+        highval=log10(tmp)+log10(sqrt(15)); % default 50 
         lowval=log10(tmp)-log10(sqrt(2)); % lowval raised from sqrt(15) to sqrt(5), oct 23, 2013 zh; sqrt2 nov 11, 2013
         val(kk,:)=logspace(lowval,highval,numvalues); % set (n=numvalues) of log-spaced values centered on thresholdguess
         values(kk,:)=[0,0,0,0,0,0,0,val(kk,:)]; %added 0-contrast values for the yes/no task.
@@ -110,9 +116,9 @@
     defarg('sbinSize',21);
     defarg('autopilot',0);
 
-    defarg('fullstimset',[1,2]);
+    defarg('fullstimset',[1,2,3,4,5,6]);
 
-    stimulusSet = {'Textures_LowA','Textures_LowB'};
+    stimulusSet = {'Faces_A','Faces_B','Textures_LowA','Textures_LowB', 'Textures_Med', 'Textures_High'};
 
 
     %% trialslab.m subject information
@@ -247,7 +253,6 @@
     load (['theStimulus',num2str(sstimset)]); 
 
     stimNames={'stim1';'stim2';'stim3';'stim4';'stim5';'stim6';'stim7';'stim8';'stim9';'stim10'};
-   % stimNames=fieldnames(eval(['theStimulus', num2str(stimset)]));
     [numStim,kk]=size(stimNames);
     for kk=1:numStim
         theStim(kk).stim=eval(['theStimulus',num2str(sstimset),'.',char(stimNames(kk))]);
@@ -277,7 +282,7 @@
     randn('state',sum(100*clock));
 
     % for playing sounds using 'snd'
-    SND_RATE=[];% 8192;
+    SND_RATE=Snd('DefaultRate');% 8192;
 
     % data matrix
     data=zeros(1,10); % dm: col 1 is staircase ID(1-4); col 2 is target contrast; col 3 is nzvar; col 4 is response;
@@ -287,8 +292,8 @@
         responseKeyboard=max(kb); % my guess of which one we'll be using
 
     escapeKey = KbName('escape');
-    presentKey = KbName('KP_End');
-    absentKey = KbName('KP_Down');
+    presentKey = KbName('1');
+    absentKey = KbName('2');
 
     % convert stimulus duration from seconds to frames
     stimframes=round(displayrate*exptdesign.duration);
@@ -335,7 +340,7 @@
             rgbMat=calfitrec.caldata(:,1:3);
             
         case 'psychophysical'
-            gamma=1.447;
+            gamma=2.022;
             cmin=(0-160)/(160);
             cmax=(255-160)/(160);
             
@@ -387,9 +392,12 @@
      adaptTime = adaptseconds;
      adaptpause(w,wrect,adaptTime,0);
 
-     err=Snd('Open'); % open the sound buffer
-     err=Snd('Play',introsnd,SND_RATE); err=Snd('Play',corrsnd,SND_RATE); err=Snd('Play',wrongsnd,SND_RATE);
-    %sound(introsnd); 
+    if useSnd
+        err=Snd('Open'); % open the sound buffer
+        err=Snd('Play',introsnd,SND_RATE); err=Snd('Play',corrsnd,SND_RATE); err=Snd('Play',wrongsnd,SND_RATE);
+    else
+        sound(introsnd);sound(corrsnd);sound(wrongsnd);
+    end
     
     FlushEvents;
     WaitSecs(1);
@@ -529,12 +537,17 @@
 		correct=(response==corresp);
 		constimrec(condID)=psyfuncUpdate(constimrec(condID),correct); % update the constant stimuli data structure
 		if correct
-			%sound(corrsnd); 
- 			err=Snd('Play',corrsnd,SND_RATE);
-		else
-			%sound(wrongsnd);
- 			err=Snd('Play',wrongsnd,SND_RATE);
-            
+            if useSnd
+                err=Snd('Play',corrsnd,SND_RATE);
+            else
+                sound(corrsnd);
+            end
+        else
+            if useSnd
+                err=Snd('Play',wrongsnd,SND_RATE);
+            else
+                sound(wrongsnd);
+            end
 		end;
 	end; % if (response > 0) & (condID>0)
     

@@ -314,7 +314,7 @@
     % set screen resolution and store old settings
     screenWidth = 1024; % 1280
     screenHeight = 768; % 1024
-    screenFrequency = 75;% 85
+    screenFrequency = 60;% 85
     screenPxSize = 32; %32
     oldResolution = Screen('Resolution', mainscrs, screenWidth, screenHeight, screenFrequency, screenPxSize);
 
