@@ -33,16 +33,17 @@
     displayrate=Screen('FrameRate',mainscrs);
 
     % file & directory names names
-    defarg('detectTEXTfolder','detectTEXTfiles');	% N.B. make sure this folder exists within the folder containing 'trialslab'!
-    defarg('detectMATfolder','detectMATfiles');		% N.B. make sure this folder exists within the folder containing 'trialslab'!
+    defarg('detectMedHighTEXTfolder','detectMedHighTEXTfiles');	% N.B. make sure this folder exists within the folder containing 'trialslab'!
+    defarg('detectMedHighMATfolder','detectMedHighMATfiles');		% N.B. make sure this folder exists within the folder containing 'trialslab'!
 
     % set the paths
     disp('setting path names...');
     mfilename='detectMedHigh'; mainfile = [mfilename,'.m'];
     eval(['mainpath=which(',QuoteString(mainfile),');']);
+    mainpath=strrep(mainpath,'experimentCode', 'data');
     mainpath = mainpath(1:end-length(mainfile));
-    textdatadir=[mainpath,detectTEXTfolder];
-    matdatadir=[mainpath,detectMATfolder];
+    textdatadir=[mainpath,detectMedHighTEXTfolder];
+    matdatadir=[mainpath,detectMedHighMATfolder];
     cd(mainpath);
     disp(mainpath);
 
