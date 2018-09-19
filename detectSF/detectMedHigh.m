@@ -108,10 +108,9 @@
     defarg('sbinSize',21);
     defarg('autopilot',0);
 
-    defarg('fullstimset',[1,2]);
+    defarg('fullstimset',[1,2,3,4,5,6]);
 
-    stimulusSet = {'Textures_Med', 'Textures_High'};
-
+     stimulusSet = {'facesA', 'facesB','Textures_LowA','Textures_LowB', 'Textures_Med', 'Textures_High'};
 
     %% trialslab.m subject information
    sidnum = 0;
@@ -285,8 +284,13 @@
         responseKeyboard=max(kb); % my guess of which one we'll be using
 
     escapeKey = KbName('escape');
-    presentKey = KbName('KP_End');
-    absentKey = KbName('KP_Down');
+   if ismac
+       presentKey = KbName('q');
+       absentKey = KbName('p');
+    else
+        presentKey = KbName('KP_End'); % Make sure to use this line for Fisk
+        absentKey = KbName('KP_Down'); % Make sure to use this line for Fisk
+    end
 
     % convert stimulus duration from seconds to frames
     stimframes=round(displayrate*exptdesign.duration);
@@ -316,7 +320,7 @@
     screenHeight = 768; % 1024
     screenFrequency = 60;% 85
     screenPxSize = 32; %32
-    oldResolution = Screen('Resolution', mainscrs, screenWidth, screenHeight, screenFrequency, screenPxSize);
+   % oldResolution = Screen('Resolution', mainscrs, screenWidth, screenHeight, screenFrequency, screenPxSize);
 
 %     % calibrate monitor # adapted april 22, 2018 to run without
 %     bit-stealing and using tim's calibration.

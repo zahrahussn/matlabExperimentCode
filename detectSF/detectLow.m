@@ -110,9 +110,9 @@
     defarg('sbinSize',21);
     defarg('autopilot',0);
 
-    defarg('fullstimset',[1,2]);
+    defarg('fullstimset',[1,2,3,4,5,6]);
 
-    stimulusSet = {'Textures_LowA','Textures_LowB'};
+    stimulusSet = {'facesA', 'facesB','Textures_LowA','Textures_LowB', 'Textures_Med', 'Textures_High'};
 
 
     %% trialslab.m subject information
@@ -244,13 +244,16 @@
         constimrec(kk).maxtrials=trialspervalue(groupID); % set number of trials per stimulus value
     end; % for
 
-    load (['theStimulus',num2str(sstimset)]); 
+%    load (['theStimulus',num2str(sstimset)]); # option removed sept 2018
+    load theStimulus3; % set to low textures to avoid stimulus error; zh sept 2018
+
 
     stimNames={'stim1';'stim2';'stim3';'stim4';'stim5';'stim6';'stim7';'stim8';'stim9';'stim10'};
    % stimNames=fieldnames(eval(['theStimulus', num2str(stimset)]));
     [numStim,kk]=size(stimNames);
     for kk=1:numStim
-        theStim(kk).stim=eval(['theStimulus',num2str(sstimset),'.',char(stimNames(kk))]);
+       % theStim(kk).stim=eval(['theStimulus',num2str(sstimset),'.',char(stimNames(kk))]);
+        theStim(kk).stim=eval(['theStimulus3.',char(stimNames(kk))]); % modified sept 2018 to fix stimulus to low textures
     end;
 
     % normalize all stim to a variance of 1
@@ -287,8 +290,14 @@
         responseKeyboard=max(kb); % my guess of which one we'll be using
 
     escapeKey = KbName('escape');
-    presentKey = KbName('KP_End');
-    absentKey = KbName('KP_Down');
+    if ismac
+       presentKey = KbName('q');
+       absentKey = KbName('p');
+    else
+        presentKey = KbName('KP_End'); % Make sure to use this line for Fisk
+        absentKey = KbName('KP_Down'); % Make sure to use this line for Fisk
+    end
+    
 
     % convert stimulus duration from seconds to frames
     stimframes=round(displayrate*exptdesign.duration);
@@ -318,7 +327,7 @@
     screenHeight = 768; % 1024
     screenFrequency = 60;% 85
     screenPxSize = 32; %32
-    oldResolution = Screen('Resolution', mainscrs, screenWidth, screenHeight, screenFrequency, screenPxSize);
+    %oldResolution = Screen('Resolution', mainscrs, screenWidth, screenHeight, screenFrequency, screenPxSize);
 
 %     % calibrate monitor # adapted april 22, 2018 to run without
 %     bit-stealing and using tim's calibration.
@@ -625,7 +634,7 @@
     cd(textdatadir);
 %     csvwrite(['pcorrect_',num2str(sidnum),'_',num2str(trialspervalue(groupID)),'trials_',strcat(stimulusSet{sstimset}),'.csv'],pcorrect)
 
-    textfname=['grp',num2str(trialspervalue(groupID)),'_ID',sidnum,'_texdetectx_',strcat(stimulusSet{sstimset})];
+    textfname=['grp',num2str(trialspervalue(groupID)),'_ID',sidnum,strcat(stimulusSet{sstimset})];
     testname=[textfname,'.txt'];
     datafilename=testname;
 
