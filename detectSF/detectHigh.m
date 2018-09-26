@@ -63,14 +63,15 @@
     % defarg('thresholdguess',[0.00001,0.0015,0.003]);
     % defarg('thresholdguess',3*nv/40); % these seem to be about right
     %thresholdguess=[0.00002, 0.00012]; %  high noise guess 0.0002 for subject fm, lowered for andy
-    thresholdguess=[0.000009, 0.00012]; % Value Changed July 10th 2018
+    thresholdguess=[4*0.00003, 4*0.00012]; %Sept 26, 2018; low noise guess raised; high guesses = 4x low guess
+    
     for kk=1:numnz
 %         tmp=thresholdguess(kk)/sqrt(10);
 %         values(kk,:)=logspace(log10(tmp),log10(10*tmp),numvalues); % set (n=numvalues) of log-spaced values centered on thresholdguess
 %         constimrec(kk)=constimInit(values(kk,:),trialspervalue(1)); % init the constantstimulus struct
 %         constimrec(kk).appspec=nv(kk);	% attached noise variance to app-specific field
         tmp=thresholdguess(kk);
-        highval=log10(tmp)+log10(sqrt(15)); % default 50 
+        highval=log10(tmp)+log10(sqrt(8)); % default 50 
         lowval=log10(tmp)-log10(sqrt(2)); % lowval raised from sqrt(15) to sqrt(5), oct 23, 2013 zh; sqrt2 nov 11, 2013
         val(kk,:)=logspace(lowval,highval,numvalues); % set (n=numvalues) of log-spaced values centered on thresholdguess
         values(kk,:)=[0,0,0,0,0,0,0,val(kk,:)]; %added 0-contrast values for the yes/no task.
@@ -242,13 +243,16 @@
         constimrec(kk).maxtrials=trialspervalue(groupID); % set number of trials per stimulus value
     end; % for
 
-    load (['theStimulus',num2str(sstimset)]); 
+    %load (['theStimulus',num2str(sstimset)]); 
+    load theStimulus6 % fixed to avoid experimenter error; Sept 25, 2018
 
+    
     stimNames={'stim1';'stim2';'stim3';'stim4';'stim5';'stim6';'stim7';'stim8';'stim9';'stim10'};
    % stimNames=fieldnames(eval(['theStimulus', num2str(stimset)]));
     [numStim,kk]=size(stimNames);
     for kk=1:numStim
-        theStim(kk).stim=eval(['theStimulus',num2str(sstimset),'.',char(stimNames(kk))]);
+       % theStim(kk).stim=eval(['theStimulus',num2str(sstimset),'.',char(stimNames(kk))]);
+        theStim(kk).stim=eval(['theStimulus6.',char(stimNames(kk))]); % modified sept 2018 to fix stimulus to high textures
     end;
 
     % normalize all stim to a variance of 1
