@@ -63,7 +63,7 @@
     % defarg('thresholdguess',[0.00001,0.0015,0.003]);
     % defarg('thresholdguess',3*nv/40); % these seem to be about right
     %thresholdguess=[0.00002, 0.00012]; %  high noise guess 0.0002 for subject fm, lowered for andy
-    thresholdguess=[2*0.00003, 2*0.00012]; %Sept 26, 2018; low noise guess raised; med guesses = 2x low guess
+    thresholdguess=[1.5*0.00003, 1.5*0.00012]; %Sept 26, 2018; low noise guess raised; med guesses = 2x low guess
     
     for kk=1:numnz
 %         tmp=thresholdguess(kk)/sqrt(10);
