@@ -7,7 +7,7 @@
     
     debug=false;
      if debug
-        rect0=[0,0,500,300];
+        rect0=[0,0,800,600];
     else
         rect0=[];
      end
@@ -58,7 +58,7 @@
     % parameters for method of constant stimuli  
     defarg('numvalues',7); % # of stimulus levels (i.e., contrast variance) used in each condition
     numContrast = numvalues;
-    defarg('trialspervalue',[1,12,20]); % # of trials per contrast level
+    defarg('trialspervalue',[1,6,12,20]); % # of trials per contrast level
     defarg('stepsperlogunit',10);
     % defarg('thresholdguess',[0.00001,0.0015,0.003]);
     % defarg('thresholdguess',3*nv/40); % these seem to be about right
@@ -325,9 +325,9 @@
     oldSupressAllWarnings = Screen('Preference', 'SuppressAllWarnings', 1);
 
     % set screen resolution and store old settings
-    screenWidth = 1024; % 1280
-    screenHeight = 768; % 1024
-    screenFrequency = 60;% 85
+    screenWidth = 1920; % 1024; % 1280
+    screenHeight = 1080; % 768; % 1024
+    screenFrequency = 120; % 60;% 85
     screenPxSize = 32; %32
     %oldResolution = Screen('Resolution', mainscrs, screenWidth, screenHeight, screenFrequency, screenPxSize);
 

@@ -58,7 +58,7 @@
     % parameters for method of constant stimuli  
     defarg('numvalues',7); % # of stimulus levels (i.e., contrast variance) used in each condition
     numContrast = numvalues;
-    defarg('trialspervalue',[1,12,20]); % # of trials per contrast level
+    defarg('trialspervalue',[1,6, 12,20]); % # of trials per contrast level
     defarg('stepsperlogunit',10);
     % defarg('thresholdguess',[0.00001,0.0015,0.003]);
     % defarg('thresholdguess',3*nv/40); % these seem to be about right
