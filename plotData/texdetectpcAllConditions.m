@@ -1,6 +1,6 @@
 
-clear all
-ID=503;
+clear all;
+ID=701;
 
 nz=[0.01, 0.1];
 c=8;
@@ -26,13 +26,13 @@ for c=1:3
                 pca(j,k, run) = mean(tmp(:,7));
             end
             
-            if pca(j,1,run)==0, pca(j,1,run)=0.0001; end
-            if pca(j,1,run)==1, pca(j,1,run)=0.9999; end
+            if pca(j,1,run)==0, pca(j,1,run)=0.0; end
+            if pca(j,1,run)==1, pca(j,1,run)=0.99; end
             zfaa(j,1,run) = norminv(1-pca(j,1,run));
             contrast = 2;
             for kk = 1:7
                 pc2 = pca(j, contrast, run);
-                if pc2==1, pc2=.9999; end
+                if pc2==1, pc2=.99; end
                 dpa(j,kk, run)=norminv(pc2)-zfaa(j,1,run);
                 contrast=contrast+1;
             end % contrast loop
@@ -52,8 +52,8 @@ for c=1:3
     axis([0.4*values(1,8) 1.6*values(2,14) -1, ymax])
     %axis([10e-7 10e-4 -1, 4.5])
     if c==1
-       %legend({'','Day 1: 0.01', 'Day 2','Day 1: 0.1', 'Day 2', ''});
-        %legend('boxoff')
+%        legend({'','Day 1: 0.01', 'Day 2','Day 1: 0.1', 'Day 2', ''});
+%         legend('boxoff')
         text(values(2,10), 0.95*ymax, num2str(ID))
     end
     xlabel('Contrast')
