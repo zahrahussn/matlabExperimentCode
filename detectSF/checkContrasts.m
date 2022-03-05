@@ -1,7 +1,7 @@
 
- lowguess=[0.000009, 0.00012];
- medguess=[2*0.000009, 2*0.00012];
- highguess=[4*0.000009, 4*0.00012];
+ lowguess=[0.00003, 0.00012];
+ medguess=[2*0.00003, 2*0.00012];
+ highguess=[4*0.00003, 4*0.00012];
 
  for kk=1:2
 %         tmp=thresholdguess(kk)/sqrt(10);
