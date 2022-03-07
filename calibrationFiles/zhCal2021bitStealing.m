@@ -11,6 +11,7 @@ else
 end
 
 
+
 %timeout=30;
 stimpix = 512;
 rgbBackground = [160 160 160];
@@ -24,6 +25,12 @@ escapeKey = KbName('Escape');
 
 oldEnableFlag = Screen('Preference', 'SuppressAllWarnings', 1);
 whichScreen = max(Screen('Screens'));
+% widthcm=57.4; % Viewpixx (with bezel)
+% heightcm=39.18;
+[widthmm, heightmm] = Screen('DisplaySize', max(Screen('Screens')));
+widthcm = widthmm/10;
+heightcm = heightmm/10;
+
 
 WaitSecs(0.5); % wait a moment...
 % fprintf('\n(calibration)$ please set the display to the desired spatial and temporal resolution\n')
@@ -71,7 +78,6 @@ fprintf('>>> pixel size = %g\n',pixelSize);
 
 [widthPixels, heightPixels]=Screen('WindowSize', whichScreen);
 fprintf('>>> display size (pixels)[width, height] = [%g,%g]\n',widthPixels,heightPixels);
-%[widthcm,heightcm] = pbGetScreenDimensions(whichScreen);
 
 
 center = [wrect(3) wrect(4)]/2;	% coordinates of screen center (pixels)
@@ -138,7 +144,7 @@ end
     calRec.stimsize = stimpix;
     calRec.displaypixels =  [widthPixels, heightPixels];
     calRec.framerate = hz;
-%     calRec.displaycm =  [widthcm, heightcm];
+    calRec.displaycm =  [widthcm, heightcm];
     calRec.pixelsize = pixelSize;    
     calRec.backgroundRGB = rgbBackground;
 
