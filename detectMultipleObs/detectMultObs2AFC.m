@@ -25,6 +25,9 @@ oldSupressAllWarnings = Screen('Preference', 'SuppressAllWarnings', 1);
 defarg('exptname','texture_detection');	% the name of the experiment
 screenNumbers = Screen('Screens');
 defarg('mainscrs',max(screenNumbers)); % this is the screen upon which the image is to be displayed.
+[swidth, sheight]=Screen('DisplaySize', screenNumbers);
+resolution=Screen('Resolution', screenNumbers);
+pixelsPerCm=resolution.width/(swidth/10); % pixels per cm, horizontal; vertical is about the same
 %swidth=1920; sheight=1080; pixelsize=32; hz=60;% should be the same as settings during calibration; should be stored with calibration file, but currently are not
 %swidth=1280; sheight=1024; pixelsize=8; hz=85;% should be the same as settings during calibration; should be stored with calibration file, but currently are not
 displayrate=Screen('FrameRate',mainscrs);
@@ -51,7 +54,7 @@ defarg('stimpix',256);		% size of stimulus in pixels
 nv = 0.1;	% external noise variance
 numnz=length(nv);	% number of external noises
 defarg('numObs',5); %  number of observations per trial
-defarg('numTrials',5 ); % # of trials per contrast level
+defarg('numTrials',1 ); % # of trials per contrast level
 value =  threshold;
 
 % stimulus timing parameters
@@ -79,12 +82,12 @@ stimNames={'stim1';'stim2';'stim3';'stim4';'stim5';'stim6';'stim7';'stim8';'stim
 for kk=1:numStim
    % theStim(kk).stim=eval(['theStimulus',num2str(sstimset),'.',char(stimNames(kk))]);
     theStim(kk).stim=eval(['theStimulus4.',char(stimNames(kk))]); % set to texture set B
-end;
+end
 
 % normalize all stim to a variance of 1
 for kk=1:numStim
     theStim(kk).stim=theStim(kk).stim*sqrt(1/var(theStim(kk).stim(:)));
-end;
+end
 theStim=theStim(1:5); % use only 5 textures
 numStim=5;
     
@@ -128,7 +131,7 @@ stimframes=round(displayrate*exptdesign.duration);
 fixpntoffsetframes=round(displayrate*exptdesign.fixpntstimoffset);
 if fixpntoffsetframes<1
     fixpntoffsetframes=1;
-end;
+end
 
 % make sounds for feedback, etc.
 introsnd=makesnd(600,.2,.6);
@@ -146,10 +149,10 @@ oldVisualDebugLevel = Screen('Preference', 'VisualDebugLevel', 3);
 oldSupressAllWarnings = Screen('Preference', 'SuppressAllWarnings', 1);
 
 % set screen resolution and store old settings
-screenWidth = 1024; % 1280
-screenHeight = 768; % 1024
-screenFrequency = 60;% 85
-screenPxSize = 32; %32
+% screenWidth = 1024; % 1280
+% screenHeight = 768; % 1024
+% screenFrequency = 60;% 85
+% screenPxSize = 32; %32
 %oldResolution = Screen('Resolution', mainscrs, screenWidth, screenHeight, screenFrequency, screenPxSize);
 
 % calibrate monitor # adapted april 22, 2018 to run without
@@ -202,8 +205,11 @@ fixpnt = [0 0 8 8]; fixpnt=CenterRect(fixpnt, wrect);
 stimRect = [0 0 256 256];
 dstRect=[0 0 256 256]; % destination rect
 % destRect = CenterRect(stimRect, wrect);
-stim1Loc=[wrect(1) wrect(2) wrect(3)/2, wrect(4)];
-stim2Loc=[wrect(3)/2 wrect(2) wrect(3), wrect(4)];
+% 2 deg away from fixation
+offset=8; % in cm from fixation point
+pixelsPerCm*offset;
+stim1Loc=[wrect(1)-(pixelsPerCm*offset) wrect(2) wrect(3)-(pixelsPerCm*offset), wrect(4)];
+stim2Loc=[wrect(1)+(pixelsPerCm*offset) wrect(2) wrect(3)+(pixelsPerCm*offset), wrect(4)];
 dstRect1=CenterRect(dstRect, stim1Loc); % dest rect centered
 dstRect2=CenterRect(dstRect, stim2Loc); % dest rect centered
 srcRect=[0 0 256 256]; % source rect, whatever that is
@@ -227,7 +233,7 @@ Screen('DrawText',w,'Please press SPACE when ready to begin.',fixPntX/2,fixPntY)
 %Screen('DrawText',w,'1 = present, 2 = absent.',fixPntX/2,fixPntY+60);
 Screen('Flip',w);
 [secs, keyCode, deltaSecs] = KbWait;
-while keyCode(KbName('space'))~=1;
+while keyCode(KbName('space'))~=1
     [secs, keyCode, deltaSecs] = KbWait;
 end
 close all;     

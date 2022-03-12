@@ -4,7 +4,7 @@
     %% multiple observation experiment.
     clear variables;
 Screen('Preference', 'SkipSyncTests', 1);
-debug=true ;
+debug=false ;
  if debug
     rect0 = [0,0,600,600];
  else
@@ -28,6 +28,15 @@ oldSupressAllWarnings = Screen('Preference', 'SuppressAllWarnings', 1);
 defarg('exptname','texture_detection');	% the name of the experiment
 screenNumbers = Screen('Screens');
 defarg('mainscrs',max(screenNumbers)); % this is the screen upon which the image is to be displayed.
+% screen resolution and size
+% screenWidth = 1920; % [1920: office iMac]
+% screenHeight = 1080; % [1080: office iMac]
+% screenFrequency = 60;% 85
+% screenPxSize = 32; %32
+%oldResolution = Screen('Resolution', mainscrs, screenWidth, screenHeight, screenFrequency, screenPxSize);
+[swidth, sheight]=Screen('DisplaySize', screenNumbers);
+resolution=Screen('Resolution', screenNumbers);
+pixelsPerCm=resolution.width/(swidth/10); % pixels per cm, horizontal; vertical is about the same
 %swidth=1920; sheight=1080; pixelsize=32; hz=60;% should be the same as settings during calibration; should be stored with calibration file, but currently are not
 %swidth=1280; sheight=1024; pixelsize=8; hz=85;% should be the same as settings during calibration; should be stored with calibration file, but currently are not
 displayrate=Screen('FrameRate',mainscrs);
@@ -185,12 +194,12 @@ stimNames={'stim1';'stim2';'stim3';'stim4';'stim5';'stim6';'stim7';'stim8';'stim
 for kk=1:numStim
    % theStim(kk).stim=eval(['theStimulus',num2str(sstimset),'.',char(stimNames(kk))]);
     theStim(kk).stim=eval(['theStimulus4.',char(stimNames(kk))]); % set to texture set B
-end;
+end
 
 % normalize all stim to a variance of 1
 for kk=1:numStim
     theStim(kk).stim=theStim(kk).stim*sqrt(1/var(theStim(kk).stim(:)));
-end;
+end
 theStim=theStim(1:5); % use only 5 textures
 numStim=5;
 
@@ -274,13 +283,6 @@ numBuffers=2;
 oldVisualDebugLevel = Screen('Preference', 'VisualDebugLevel', 3);
 oldSupressAllWarnings = Screen('Preference', 'SuppressAllWarnings', 1);
 
-% set screen resolution and store old settings
-screenWidth = 1280; % 1280
-screenHeight = 1024; % 1024
-screenFrequency = 100;% 85
-screenPxSize = 32; %32
-%oldResolution = Screen('Resolution', mainscrs, screenWidth, screenHeight, screenFrequency, screenPxSize);
-
 % calibrate monitor # adapted april 22, 2018 to run without
 % bit-stealing and using tim's calibration.
 
@@ -331,9 +333,17 @@ priorityLevel=MaxPriority(w);
 fixpnt = [0 0 8 8]; fixpnt=CenterRect(fixpnt, wrect);
 stimRect = [0 0 256 256];
 dstRect=[0 0 256 256]; % destination rect
-% destRect = CenterRect(stimRect, wrect);
-stim1Loc=[wrect(1) wrect(2) wrect(3)/2, wrect(4)];
-stim2Loc=[wrect(3)/2 wrect(2) wrect(3), wrect(4)];
+% destRect = CenterRect(stimRect, wrect); % center of screen; original
+
+% halfway between left or right edge and middle of screen; not good
+% stim1Loc=[wrect(1) wrect(2) wrect(3)/2, wrect(4)]; 
+% stim2Loc=[wrect(3)/2 wrect(2) wrect(3), wrect(4)];
+
+% 2 deg away from fixation; better?
+offset=8; % in cm from fixation point; at 114 cm viewing dist, the edge of the stimulus should be about 2 deg away from fixation
+pixelsPerCm*offset;
+stim1Loc=[wrect(1)-(pixelsPerCm*offset) wrect(2) wrect(3)-(pixelsPerCm*offset), wrect(4)];
+stim2Loc=[wrect(1)+(pixelsPerCm*offset) wrect(2) wrect(3)+(pixelsPerCm*offset), wrect(4)];
 dstRect1=CenterRect(dstRect, stim1Loc); % dest rect centered
 dstRect2=CenterRect(dstRect, stim2Loc); % dest rect centered
 srcRect=[0 0 256 256]; % source rect, whatever that is
@@ -452,7 +462,7 @@ for b = 1:length(noiseCondition) % for length of blocks
             trialStartTime=GetSecs;
             gotime=stime+exptdesign.intertrial; % wait here
 
-            while (GetSecs<gotime), end;
+            while (GetSecs<gotime), end
 
             vbl=GetSecs;
             vblendtime = vbl + 0.1; % vbl + 1
@@ -463,7 +473,7 @@ for b = 1:length(noiseCondition) % for length of blocks
 
             % interval 1
             time0=GetSecs;
-            timeStim=time0+.2;
+            timeStim=time0+0.2;
             while(time0<timeStim)
                 Screen('DrawTexture', w, Stim1, srcRect, dstRect1);  % put the image on the screen
                 Screen('FrameRect', w, 10, boxrect1, 1); % put the frame around the stim on the screen
@@ -495,7 +505,7 @@ for b = 1:length(noiseCondition) % for length of blocks
             while(time1<timeThumb)
                 Screen('glPoint',w,0,fixPntX,fixPntY,8);
                 [time1]=Screen('Flip', w);
-            end;
+            end
              ListenChar(2);
              FlushEvents('keyDown');
 
@@ -601,7 +611,7 @@ disp(['workspace stored in file ',testname]);
 
 cd(textdatadir);
 
-textfname=['grp',num2str(trialspervalue(groupID)), '_detectionThreshold','_ID',num2str(sidnum),'_TexturesB'];
+textfname=['grp',num2str(trialspervalue(groupID)), '_detectionQuestThreshold','_ID',num2str(sidnum),'_TexturesB'];
 testname=[textfname,'.txt'];
 datafilename=testname;
 
