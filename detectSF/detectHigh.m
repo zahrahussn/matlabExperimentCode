@@ -7,14 +7,14 @@
     
     debug=false;
      if debug
-        rect0=[0,0,500,300];
+        rect0=[0,0,800,800];
     else
         rect0=[];
      end
     
      % other method = bitStealing; zh april 22, 2018, with help from jb
-    calibrationMethod='psychophysical';
-%    calibrationMethod='bitStealing';
+%    calibrationMethod='psychophysical';
+    calibrationMethod='bitStealing';
     
 
     starttime=GetSecs; 
@@ -58,12 +58,14 @@
     % parameters for method of constant stimuli  
     defarg('numvalues',7); % # of stimulus levels (i.e., contrast variance) used in each condition
     numContrast = numvalues;
-    defarg('trialspervalue',[1,6, 12,20]); % # of trials per contrast level
+    defarg('trialspervalue',[1,6, 10,20]); % # of trials per contrast level
     defarg('stepsperlogunit',10);
     % defarg('thresholdguess',[0.00001,0.0015,0.003]);
     % defarg('thresholdguess',3*nv/40); % these seem to be about right
     %thresholdguess=[0.00002, 0.00012]; %  high noise guess 0.0002 for subject fm, lowered for andy
-    thresholdguess=[3*0.00003, 3*0.00012]; %Sept 26, 2018; low noise guess raised; high guesses = 4x low guess
+    %thresholdguess=[3*0.00003, 3*0.00012]; % Sept 26, 2018; low noise guess raised; high guesses = 4x low guess
+    thresholdguess=[3*0.000024, 3*0.00019]; % May 30, 2022; high noise guess raised
+
     
     for kk=1:numnz
 %         tmp=thresholdguess(kk)/sqrt(10);
@@ -113,6 +115,7 @@
     defarg('fullstimset',[1,2,3,4,5,6]);
 
      stimulusSet = {'facesA', 'facesB','Textures_LowA','Textures_LowB', 'Textures_Med', 'Textures_High'};
+    % sstimset = 'theStimulus6';
 
     %% trialslab.m subject information
    sidnum = 0;
@@ -332,7 +335,8 @@
 
     switch(calibrationMethod)
         case 'bitStealing'
-            scrinfo.calfile     = 'curCalRecTmpFileADJUSTED.mat';
+            %scrinfo.calfile     = 'curCalRecTmpFileADJUSTED.mat';
+            scrinfo.calfile     = 'curCalRecTmpFileRAW.mat';
             calfitrec           = pbReadCalibrationFile(scrinfo.calfile);
             avgLum = calfitrec.lmaxminave(3);
             cmin=(calfitrec.lmaxminave(2)-calfitrec.lmaxminave(3))/calfitrec.lmaxminave(3);
