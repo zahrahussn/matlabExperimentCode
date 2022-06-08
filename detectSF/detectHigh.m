@@ -336,7 +336,7 @@
     switch(calibrationMethod)
         case 'bitStealing'
             %scrinfo.calfile     = 'curCalRecTmpFileADJUSTED.mat';
-            scrinfo.calfile     = 'curCalRecTmpFileRAW.mat';
+            scrinfo.calfile     = 'curCalRecTmpFileRAW_05-Mar-2022.mat';
             calfitrec           = pbReadCalibrationFile(scrinfo.calfile);
             avgLum = calfitrec.lmaxminave(3);
             cmin=(calfitrec.lmaxminave(2)-calfitrec.lmaxminave(3))/calfitrec.lmaxminave(3);
