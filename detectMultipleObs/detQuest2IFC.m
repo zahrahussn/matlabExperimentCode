@@ -4,7 +4,7 @@
     %% multiple observation experiment.
     clear variables;
 Screen('Preference', 'SkipSyncTests', 1);
-debug=true;
+debug=false;
  if debug
     rect0 = [0,0,600,600];
  else
@@ -61,7 +61,7 @@ defarg('duration',0.2);	% stimulus duration in seconds
 defarg('fixpntstimoffset',0.2); % time between fixation point offset and stimulus onset in seconds
 defarg('intertrial',1);	% inter-trial interval in seconds; meaninful only when usespace=0 (see next line)
 defarg('usespace',0);	% when zero, trials are started automatically; when 1, trials started by clicking mouse near fixation point
-defarg('adaptseconds',1); % light adaptation time
+defarg('adaptseconds',60); % light adaptation time
 
 % put all of these things into a structure
 exptdesign.duration=duration; % stimulus duration (sec)

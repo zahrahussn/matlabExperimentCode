@@ -54,7 +54,7 @@ defarg('stimpix',256);		% size of stimulus in pixels
 nv = 0.1;	% external noise variance
 numnz=length(nv);	% number of external noises
 defarg('numObs',5); %  number of observations per trial
-defarg('numTrials',1 ); % # of trials per contrast level
+defarg('numTrials',100 ); % # of trials per contrast level
 value =  threshold;
 
 % stimulus timing parameters
@@ -160,7 +160,7 @@ oldSupressAllWarnings = Screen('Preference', 'SuppressAllWarnings', 1);
 
 switch(calibrationMethod)
     case 'bitStealing'
-        scrinfo.calfile     = 'curCalRecTmpFileADJUSTED.mat';
+        scrinfo.calfile     = 'curCalRecTmpFileRAW_13-Dec-2021.mat';
         calfitrec           = pbReadCalibrationFile(scrinfo.calfile);
         avgLum = calfitrec.lmaxminave(3);
         cmin=(calfitrec.lmaxminave(2)-calfitrec.lmaxminave(3))/calfitrec.lmaxminave(3);

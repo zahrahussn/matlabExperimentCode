@@ -1,7 +1,7 @@
     %% Multiple observation 2IFC detection; ZH Oct 2019
     %% Textures in one noise level, at one contrast
 Screen('Preference', 'SkipSyncTests', 1);
-debug=true;
+debug=false;
  if debug
     rect0 = [0,0,600,600];
  else
@@ -51,7 +51,7 @@ defarg('stimpix',256);		% size of stimulus in pixels
 nv = 0.1;	% external noise variance
 numnz=length(nv);	% number of external noises
 defarg('numObs',5); %  number of observations per trial
-defarg('numTrials',1); % # of trials per contrast level
+defarg('numTrials', 100); % # of trials per contrast level
 value =  threshold;
 
 % stimulus timing parameters
@@ -157,7 +157,7 @@ screenPxSize = 32; %32
 
 switch(calibrationMethod)
     case 'bitStealing'
-        scrinfo.calfile     = 'curCalRecTmpFileADJUSTED.mat';
+        scrinfo.calfile     = 'curCalRecTmpFileRAW_13-Dec-2021.mat';
         calfitrec           = pbReadCalibrationFile(scrinfo.calfile);
         avgLum = calfitrec.lmaxminave(3);
         cmin=(calfitrec.lmaxminave(2)-calfitrec.lmaxminave(3))/calfitrec.lmaxminave(3);
@@ -260,8 +260,8 @@ for b = 1:length(noiseCondition) % for length of blocks
             for o = 1:numObs
                 [noise1(:,:,o),nzseed1(:,o)]=noise2d(stimpix,nv,cmin,cmax,0);
                 [noise2(:,:,o),nzseed2(:,o)]=noise2d(stimpix,nv,cmin,cmax,0);
-%                 nzseed1(:,o)
-%                 nzseed2(:,o)
+                 nzseed1(:,o);
+                 nzseed2(:,o);
 %                 corrcoef(noise1(:,:,o), noise2(:,:,o))
             end
 
