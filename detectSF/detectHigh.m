@@ -19,7 +19,8 @@
 
     starttime=GetSecs; 
     %randn('state',sum(100*clock)); % initialize the random number generator
-    RandStream.create('mt19937ar','seed',sum(100*clock));
+    %RandStream.create('mt19937ar','seed',sum(100*clock));
+    rng('shuffle'); %COMMENT PREVIOUS LINE AND UNCOMMENT THIS TO RANDOMIZE
     warning('off','MATLAB:dispatcher:InexactMatch');
     %disable psychtoolbox test screen
     oldVisualDebugLevel = Screen('Preference', 'VisualDebugLevel', 3);
@@ -279,7 +280,10 @@
     MONTE_CARLO_SIM=0;
 
     % initialize the random number generator
-    randn('state',sum(100*clock));
+    % randn('state',sum(100*clock));
+     %rng('default');
+    rng('shuffle'); %UNCOMMENT TO RANDOMIZE
+    randn(1,1);
 
     % for playing sounds using 'snd'
     SND_RATE=[];% 8192;
@@ -430,6 +434,7 @@
    % for z = 1:2
     
     z=randomcondition(2);
+    %z=1;%by MA: used to hardcode low noise as first block to test the order effects
     condcount=0;
    
     while ((alldone==0)&(quitflag==0))
@@ -687,6 +692,6 @@
     cd(mainpath); % restore original path
     ShowCursor(0);
     Screen('CloseAll');
-    
+    Snd('Close');
 
 % end % function
