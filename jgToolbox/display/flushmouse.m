@@ -1,0 +1,1 @@
+function flushmouse;% FLUSHMOUSE  Flush all mouse-click events.flushevents('mouseUp','mouseDown');return

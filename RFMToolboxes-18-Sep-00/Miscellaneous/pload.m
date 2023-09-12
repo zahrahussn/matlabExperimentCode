@@ -1,0 +1,1 @@
+function pload( fname )% PLOAD  A version of the 'load' function that permits use of pathnames%% pload( fname )%% e.g., pload Code:Stimuli:gabor.mat% 11-Jun-99 -- created (RFM)[path,name,ext]=fileparts(fname);if ~isempty(path),	oldwd=pwd;	cd(path);endevalin('caller',sprintf('load(''%s%s'');',name,ext));if ~isempty(path),	cd(oldwd);endreturn

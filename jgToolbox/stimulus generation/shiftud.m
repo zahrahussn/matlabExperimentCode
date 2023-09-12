@@ -1,0 +1,1 @@
+function m = shiftud(m,n)% function m = shiftud(m,n)%% shift vertically% up is negativem = (shiftlr(m',n))';return;

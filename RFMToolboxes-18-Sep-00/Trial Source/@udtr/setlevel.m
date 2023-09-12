@@ -1,0 +1,1 @@
+function newsrc = setlevel( src, level )% SETLEVEL  Set current level of a UDTR trial source%% newsrc = setlevel( src, level )% 01-Mar-99 -- created (RFM)newsrc=src;[m,i]=min(abs(newsrc.levels-level));newsrc.leveli=i;return

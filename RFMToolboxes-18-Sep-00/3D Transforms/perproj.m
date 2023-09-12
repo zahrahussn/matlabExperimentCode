@@ -1,0 +1,1 @@
+function vv = perproj( view, iv )% PERPROJ  Perspective projection%% vv = perproj( view, iv )% 24-Jul-99 -- created (RFM)iv=hom2inhom(iv);pv=view*iv;pv=inhom2hom(pv);vv=pv([ 1 2 ],:)./(ones(2,1)*(pv(3,:)+1));return

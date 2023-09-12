@@ -1,0 +1,1 @@
+function timelapserec( fname, total, delta )% TIMELAPSEREC  Record a time-lapse movie.%% timelapserec( fname, total, delta )F=round(total/delta);mv = [];for f=1:F,	start=getsecs;	mv = cat(3,mv,qc);	while (getsecs-start)<delta,	endendsave(fname,'mv');return

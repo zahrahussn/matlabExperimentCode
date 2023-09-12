@@ -1,0 +1,1 @@
+function e = energy( sig )% ENERGY  Signal energy%% e = energy( sig )% 05-Mar-99 -- created (RFM)e=sum(sig(:).^2);return

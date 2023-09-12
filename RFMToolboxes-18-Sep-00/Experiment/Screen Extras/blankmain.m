@@ -1,0 +1,1 @@
+function mainID = blankmain% BLANKMAIN  Blank main window%% mainID = blankmainmainID = screen(0,'OpenWindow',0);nulllut = zeros(256,3);screen(0,'SetClut',nulllut);return

@@ -1,0 +1,1 @@
+function mat = ixrotmat( theta )% IXROTMAT  Inhomogeneous x-axis rotation matrix%% mat = ixrotmat( theta )% 23-Jul-99 -- created (RFM)mat = [ 1 0           0           0 ; ...        0 cos(theta)  -sin(theta) 0 ; ...		0 sin(theta)  cos(theta)  0 ; ...		0 0           0           1 ];return

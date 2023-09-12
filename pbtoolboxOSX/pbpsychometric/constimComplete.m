@@ -1,0 +1,1 @@
+function finished=constimComplete(csrec)	[k,n]=size(csrec);	tmp=zeros(1,n);	for kk=1:n			tmprec=csrec(kk);			tmp(kk)=tmprec.alldone;	end;	finished=min(tmp(:));	return;	

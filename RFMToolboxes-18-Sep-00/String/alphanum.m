@@ -1,0 +1,1 @@
+function an = alphanum( str )an = str( ( str>='A' & str<='Z' ) | ...          ( str>='a' & str<='z' ) | ...		  ( str>='0' & str<='9' ) );		  return

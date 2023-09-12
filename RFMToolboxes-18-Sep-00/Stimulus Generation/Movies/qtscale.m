@@ -1,0 +1,1 @@
+function newimg = qtscale( img )mi=min(img(:));ma=max(img(:));newimg=255*(img-mi)/(ma-mi);return

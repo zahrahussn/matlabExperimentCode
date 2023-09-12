@@ -1,0 +1,1 @@
+function x = weibullinv(y,alpha,beta)% WEIBULLINV  Modified Weibull inverse CDFx=alpha.*power(-log(1-y),1./beta);x(find(y<0))=0;x(find(y>=1))=NaN;return

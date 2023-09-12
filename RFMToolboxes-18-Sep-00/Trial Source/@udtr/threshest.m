@@ -1,0 +1,1 @@
+function est = threshest( src )% THRESHEST  Get a threshold estimate from a UDTR trial source%% est = threshest( src )% 30-Sep-98 -- created (RFM)% return average of stimulus levels at reversalsif src.nreversals>src.preversals,	est=src.reversalsx/(src.nreversals-src.preversals);else	est=NaN;endreturn

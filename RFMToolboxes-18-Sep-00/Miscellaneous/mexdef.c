@@ -1,0 +1,1 @@
+/*mexdef.c -- MEX file skeletonMATLAB usage:  mexdef( n )03-Sep-98 -- created (RFM)*/#include "mex.h"void mexdef(int n);/* gateway function */void mexFunction(int nlhs,mxArray *plhs[],int nrhs,const mxArray *prhs[]) {	int n=( nrhs>0 ? mxGetScalar(prhs[0]) : 0 );	return;	}/* main routine */void mexdef(int n) {	return	}

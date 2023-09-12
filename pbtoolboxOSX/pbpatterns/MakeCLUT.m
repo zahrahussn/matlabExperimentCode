@@ -1,0 +1,1 @@
+function theClut=MakeCLUT(c)%%%%	temp=0:255;	m=(c*127)/127;	b=127-(c*127);	red=round(m*temp+b);	theClut=[red',red',red'];	return;

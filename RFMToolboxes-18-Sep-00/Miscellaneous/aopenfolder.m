@@ -1,0 +1,1 @@
+function aopenfolder( foldername )% AOPENFOLDER  Open a folder on the desktop%% aopenfolder( foldername )% 20-Nov-98 -- created (RFM)applescript('aopenfolder','theFolder',[ '"' foldername '"' ]);return

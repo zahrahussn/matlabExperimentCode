@@ -1,0 +1,1 @@
+function pm=Pixelimage(cimage);%%	function pm=Pixelimage(cimage);%	This function linearly transforms the image values onto integers ranging%%	from 0 to 255.	pm=round(255*scale(cimage));	return;	

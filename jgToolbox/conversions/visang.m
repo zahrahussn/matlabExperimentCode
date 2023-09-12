@@ -1,0 +1,1 @@
+function [ang] = visang(distance,size)% function [angle] = visang(distance,size)% Computes the visual angle of a stimulus at a % specified DISTANCE and of a specified SIZE. % DISTANCE and SIZE should be in the same units.%% June 26, 1997  JMG  U of T Vision Labang = rad2deg(atan(size/distance));return

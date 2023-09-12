@@ -1,0 +1,1 @@
+% ca.m%% Clears all of the functions and vars present in the workspace.% also clears current figures%% July 1998  JMG  U of T Vision Labclear all;closeall;clearfigs;return

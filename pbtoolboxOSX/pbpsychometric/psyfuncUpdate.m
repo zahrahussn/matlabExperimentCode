@@ -1,0 +1,1 @@
+function datarec=psyfuncUpdate(datarec,correct)	switch datarec.type	case 'staircase'		datarec=scUpdate(datarec,correct);	case 'constantstimulus'		datarec=constimUpdate(datarec,correct);	end;return;

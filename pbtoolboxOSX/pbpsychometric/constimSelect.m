@@ -1,0 +1,1 @@
+function n=constimSelect(numrecs)	n=1+floor(numrecs*rand);	return;	

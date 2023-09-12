@@ -1,0 +1,1 @@
+function b = isdone( src )% ISDONE  Flags whether trial source list has expired%% b = isdone( src )%% 0 = not expired, 1 = expired% 04-Oct-99 -- created at PJB's suggestion (RFM)% see whether at least one trial source in the list hasn't expiredb=1;for i=1:src.nsources,	if ~isdone(src.sources{i}),		b=0;		break	endendreturn

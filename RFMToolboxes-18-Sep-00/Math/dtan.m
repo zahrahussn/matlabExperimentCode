@@ -1,0 +1,1 @@
+function y = dtan( x )% DTAN  Tangent function ( argument in degrees )%% y = dtan( x )% 17-Aug-98 -- created (RFM)y = tan(deg2rad(x));return

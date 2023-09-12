@@ -1,0 +1,1 @@
+function rimage=rectgrating(nr,f);%% function rimage=rectgrating(num_rows,freq);% returns an image of a cosine wave; values vary from -1 to 1% frequency is specified in cycles per array%nc=nr;x=0:(nc-1);x=x./nc;x=x-0.5;x=x*f;temp=cos(2*pi*x);rimage=temp'*ones(1,nc);return;

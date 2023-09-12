@@ -1,0 +1,1 @@
+function [ Image ] = Vern0Img( StimLev, Unc )Image=0.3*VernImg(0,2,2,Unc(1)-2,0);return

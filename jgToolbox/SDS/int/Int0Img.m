@@ -1,0 +1,1 @@
+function [ Image ] = Int0Img( StimLev, Unc )Image=IntImg(1);return

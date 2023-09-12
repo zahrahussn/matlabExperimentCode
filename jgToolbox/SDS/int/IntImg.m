@@ -1,0 +1,1 @@
+function [ Image ] = IntImg( Intensity )% IntImg - intensity threshold test imageImageSize=64;% radius of circle to be judgedRadius=4;Left=floor(ImageSize/2)-Radius;Top=Left;N=(2*Radius)+1;% construct imageImage=ones(ImageSize,ImageSize);Image(Left:Left+(N-1),Top:Top+(N-1)) = ((Intensity-1)*Circ2D(Radius))+1;return

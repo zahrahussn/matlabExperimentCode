@@ -1,0 +1,1 @@
+function [ P ] = Int0Prob( Unc )if Unc==-1,	P = [ 1 ];elseif Unc(1)==1,	P=1;else	P=0;endreturn

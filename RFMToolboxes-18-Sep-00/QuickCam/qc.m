@@ -1,0 +1,1 @@
+function frame = qc;% QC  Return a frame from the QuickCam;winID=screen(-1,'OpenOffscreenWindow',0,[ 0 0 400 400 ]);qcframe(winID);frame=255-screen(winID,'GetImage',[ 0 0 320 240 ]);screen(winID,'Close');return

@@ -1,0 +1,1 @@
+% GAUSS2D  Create a 2D Gaussian%% gaussmat = gauss2d( dim, sigma )%     dim   - size [ M ; N ] of matrix;  square if N omitted%     sigma - standard deviation of Gaussian

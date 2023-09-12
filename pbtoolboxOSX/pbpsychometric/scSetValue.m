@@ -1,0 +1,1 @@
+function screc=scSetValue(screc,v)	tmp=abs(screc.values-v);	[y,i]=min(tmp);	screc.curindex=i;	screc.curvalue=screc.values(i);	return;

@@ -1,0 +1,1 @@
+function newim = imscale( im, range )defarg('range',[ 0 1 ]);ma=max(im(:));mi=min(im(:));newim=range(1)+(range(2)-range(1))*(im-mi)/(ma-mi);return

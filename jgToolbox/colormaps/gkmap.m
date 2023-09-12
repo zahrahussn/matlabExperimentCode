@@ -1,0 +1,1 @@
+function [map] = gkmap(numpts,lowerpix,upperpix)defarg('numpts',256);defarg('lowerpix',0);defarg('upperpix',numpts-1);g = linspace(upperpix,lowerpix,numpts)';b = zeros(size(g));r = b;map = [r,g,b];return;

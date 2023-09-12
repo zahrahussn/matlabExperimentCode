@@ -1,0 +1,1 @@
+function ret = pmod( mat, modulus )% PMOD  Modified modulus%% ret = pmod( mat, modulus )ret = (mat>=0).*rem(mat,modulus) + ...      (mat<0).*((modulus-1)+rem(mat+1,modulus));return

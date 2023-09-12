@@ -1,0 +1,1 @@
+function [outvalue] = GetGauss(u,sd,invalue)% function [outvalue] = getgauss(u,sd,invalue)%% function [outvalue] = GetGauss(u,sd,invalue)% Get the value of the Gaussion distrubution with mean u% and standard deviation sd at value invalue.%% June 1998  JMG U of T Vision Laboutvalue = (1/(sqrt(2*pi*sd^2))*exp(-((invalue-u)/sd)^2/2));return;

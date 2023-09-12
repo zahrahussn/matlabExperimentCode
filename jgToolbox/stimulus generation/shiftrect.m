@@ -1,0 +1,1 @@
+function newr = shiftrect( r, dx, dy )if nargin<3,	dy=0;endnewr=r+[ dx dy dx dy ];return

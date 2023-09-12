@@ -1,0 +1,1 @@
+function thetamod = radmod( theta )% RADMOD  Convert an angle to its equivalent in ( -pi, pi ].%% thetamod = radmod( theta )thetamod = pi-mod(-(theta+pi),2*pi);% If we use the more obvious mod(theta+pi,2*pi)-pi, then pi is mapped% to -pi.  The function used here maps pi to pi, and differs from the% obvious function only at that point.return

@@ -1,0 +1,1 @@
+function dfflush% DFFLUSH  Flush data buffer to file%% dfflush% 03-May-99 -- created (RFM)global dfif ~isfield(df,'bufferflag'),	returnendoldbflag=df.bufferflag;df.bufferflag=0;olddflag=df.debug;df.debug=[];for i=1:df.bufferi,	dfprintf('%s',df.buffer{i});enddf.bufferi=0;df.buffer=[];df.bufferflag=oldbflag;df.debug=olddflag;return

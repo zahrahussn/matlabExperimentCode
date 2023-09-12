@@ -1,0 +1,1 @@
+function newfilename = rmextension(filename)%%% removes the extension from a file name.% functionally, anything after the first % period (".") is removed, period included.% this is useful when saving data files, etc.%% March 6 2000 JMGperiod=findstr(filename,'.');if isempty(period)==0,	newfilename = filename(1:period-1);else	newfilename = filename;endreturn

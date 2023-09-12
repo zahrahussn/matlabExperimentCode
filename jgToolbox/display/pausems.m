@@ -1,0 +1,1 @@
+function pausems( ms )% PAUSEMS  Like 'pause', but argument is in milliseconds.tic;while 1000*toc<ms,endreturn

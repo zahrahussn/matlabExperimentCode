@@ -1,0 +1,1 @@
+IGORWAVES/D	degconstantBEGIN	0.0004088ENDX SetScale/P x 0,1,"", degconstant; SetScale y 0,0,"", degconstantWAVES/D	NSDBEGIN	4.087999896728433e-08	2.04400009708479e-07	1.02199997715652e-06	5.110000076144933e-06	2.555e-05ENDX SetScale/P x 0,1,"", NSD; SetScale y 0,0,"", NSD

@@ -1,0 +1,1 @@
+function symbol = plotsymbol(symbolnumber)thesymbols = 'ox+*sdv^<>ph';if symbolnumber > length(thesymbols)	symbolnumber = rem(symbolnumber,length(thesymbols));	symbolnumber = symbolnumber+symbolnumber==0;endsymbol = thesymbols(symbolnumber);return

@@ -1,0 +1,1 @@
+function c = crosscorr( im1, im2 )% CROSSCORR  Cross-correlation of two matrices%% c = crosscorr( im1, im2 )% 27-Jan-00 -- created (RFM0c=sum(sum(sum(im1.*im2)));return

@@ -1,0 +1,1 @@
+function [pc] = linearconsistfun(pa,w)pc = w.*log10(pa/100) + 100;return

@@ -1,0 +1,1 @@
+function pos = strchr( str, chr )% STRCHR  Find first occurrence of a character in a string%% pos = strchr( str, chr )% 18-Feb-99 -- created (RFM)p=find(str==chr(1));if isempty(p),	pos=0;else	pos=p(1);endreturn

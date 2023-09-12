@@ -1,0 +1,1 @@
+function t = datan2( y, x )% DATAN2  Two-argument arctangent function ( returns degrees )%% t = datan2( y, x )% 17-Aug-98 -- created (RFM)t = rad2deg(atan2(y,x));return

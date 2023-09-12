@@ -1,0 +1,1 @@
+function pixel = deg2pixel( deg, roundflag )% DEG2PIXEL  Convert degrees to pixels%% pixel = deg2pixel( deg, roundflag )% 16-Jul-98 -- created (RFM)defarg('roundflag',1);global ENVIRON;pixel=deg*ENVIRON.pixelperdeg;if roundflag,	pixel=round(pixel);endreturn

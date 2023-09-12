@@ -1,0 +1,1 @@
+function closewin% CLOSEWIN  Close the default stimulus window%% closewin% 12-Nov-99 -- created (RFM)screen('CloseAll');showcursor;flushkeyboard;clear global CLUTreturn

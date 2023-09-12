@@ -1,0 +1,1 @@
+function inch = cm2inch(cm)% converts centimeters to inches.%% July 1998 JMG U of T Vision Labinch = cm/2.54;return

@@ -1,0 +1,1 @@
+function setmap(map,handle)defarg('handle',gcf)set(gcf,'ColorMap',scale(map));return;

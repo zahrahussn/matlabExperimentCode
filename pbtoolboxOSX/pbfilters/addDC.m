@@ -1,0 +1,1 @@
+function newfilt=addDC(oldfilt,val)%%function newfilt=addDC(oldfilt,val)%% puts "val" at DC point% assumes input is arranged with DC at center of image% i.e., that the input contains the amplitude spectrum of the filter%if (nargin<2)	val =1;end;[dimy,dimx]=size(oldfilt);oldfilt(round(dimy/2)+1,round(dimx/2)+1)=val;newfilt=oldfilt;return;

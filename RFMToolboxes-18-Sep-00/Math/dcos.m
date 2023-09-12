@@ -1,0 +1,1 @@
+function y = dcos( x )% DCOS  Cosine function ( argument in degrees )%% y = dcos( x )% 17-Aug-98 -- created (RFM)y = cos(deg2rad(x));return

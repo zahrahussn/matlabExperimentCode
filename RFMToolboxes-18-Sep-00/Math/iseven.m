@@ -1,0 +1,1 @@
+function e = iseven( num )% ISEVEN  Determines whether a number is even%% e = iseven( num )% 21-Apr-98 -- created (RFM)e = (num==(2*floor(num/2)));return

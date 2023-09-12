@@ -1,0 +1,1 @@
+function setclutwin( winID )% SETCLUTWIN  Set the window to which the clut will be written%% setclutwin( winID )% 24-Aug-99 -- created (RFM)global CLUTCLUT.winID=winID;if ~isfield(CLUT,'mat'),	minlum=grey2lum(0);	maxlum=grey2lum(255);	setclutbg(mean([ minlum maxlum ]));	setclutrange(minlum,maxlum);endreturn

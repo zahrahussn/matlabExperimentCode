@@ -1,0 +1,1 @@
+function [ P ] = CSF0Prob( Unc )% CSF0Prob - stimulus-absent uncertainty functionif Unc==-1,	P = [ 1 ];elseif Unc(1)==1,	P=1;else	P=0;endreturn

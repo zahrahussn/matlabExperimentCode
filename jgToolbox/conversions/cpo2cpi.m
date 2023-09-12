@@ -1,0 +1,1 @@
+function [CPI] = cpo2cpi(CPO,imagesize,objectsize)% function [CPI] = cpi2cpd(CPO,imagesize,objectsize)%% Converts cycles per image [CPI] into cycles per object [CPO].% This is just when the object size is not equal to the field% upon which it is being presented.%% March 23, 1997.  JMG  PJB  ABS   U of Toronto Vision LabCPI = CPO/(objectsize/imagesize);return

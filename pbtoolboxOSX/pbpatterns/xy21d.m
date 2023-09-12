@@ -1,0 +1,1 @@
+function [loc]=xy21d(x,y,nc);%% Takes the x,y coordinates of a point in a matrix with nc columns and% returns the 1D location of that point.%if (nc<1)	disp('illegal # of columns!');	return;end;loc=x+(nc*(y-1));return;

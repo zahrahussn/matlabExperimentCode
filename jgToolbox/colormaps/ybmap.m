@@ -1,0 +1,1 @@
+function [map] = ybmap(numpts,lowerpix,upperpix)defarg('numpts',256);defarg('lowerpix',0);defarg('upperpix',numpts-1);b = round(linspace(lowerpix,upperpix,numpts))';g = flipud(b);r = g;map = [r,g,b];return;

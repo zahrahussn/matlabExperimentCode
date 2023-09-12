@@ -1,0 +1,1 @@
+function phys2mach( varargin )for i=1:nargin,	v=varargin{i};	n=inputname(i);	switch n(end),		case 'D', evalin('caller',sprintf('%sP=%f;',n(1:end-1),deg2pixel(v)));		case 'S', evalin('caller',sprintf('%sF=%f;',n(1:end-1),sec2frame(v)));	endendreturn

@@ -1,0 +1,1 @@
+% iipm.m - ideal observer's intensity threshold psychometric function% get psychometric function with 500 trials per level[ Trials Alpha Beta ] = ...	RunSDS('Int0','Int1',[ 0 1 2 3 4 5 6 7 8 9 10 ],500,'weib');save iipm_trials Trials Alpha Beta

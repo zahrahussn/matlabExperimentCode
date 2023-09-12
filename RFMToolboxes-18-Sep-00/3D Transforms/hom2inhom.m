@@ -1,0 +1,1 @@
+function iv = hom2inhom( hv )% HOM2INHOM  Convert homogeneous coordinates to inhomogeneous%% iv = hom2inhom( hv )% 23-Jul-99 -- created (RFM)if ~ishom(hv),	iv=hv;else	iv=[ hv ; ones(1,size(hv,2)) ];endreturn

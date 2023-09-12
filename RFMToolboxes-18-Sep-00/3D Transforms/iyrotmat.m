@@ -1,0 +1,1 @@
+function mat = iyrotmat( theta )% IYROTMAT  Inhomogeneous y-axis rotation matrix%% mat = iyrotmat( theta )% 23-Jul-99 -- created (RFM)mat = [ cos(theta)  0 sin(theta)  0 ; ...        0           1 0           0 ; ...		-sin(theta) 0 cos(theta)  0 ; ...		0           0 0           1 ];return

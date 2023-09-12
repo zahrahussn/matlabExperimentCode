@@ -1,0 +1,1 @@
+function lum = cind2lum( cind )% CIND2LUM  Convert clut indices to luminances (cd/m^2)%% lum = cind2lum( cind )% 25-Aug-99 -- created (RFM)global CLUTlum=CLUT.minlum+(CLUT.maxlum-CLUT.minlum)*(cind-1)/255;return

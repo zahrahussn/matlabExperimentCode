@@ -1,0 +1,1 @@
+function sd = stdm(a)% function sd = stdm(a)%% standard deviation of all elements% for vectors, this is the same as % the MATLAB STD command. for higher% dimensional matrices, it is the% same as std(a(:)).%% march 18 1999 JMGsd = std(a(:));return;

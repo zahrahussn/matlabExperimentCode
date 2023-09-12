@@ -1,0 +1,1 @@
+function value = notnull( val1, val2 )if isempty(val1)==0,	value=val1;else	value=val2;endreturn

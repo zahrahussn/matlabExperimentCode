@@ -1,0 +1,1 @@
+function endbeep% ENDBEEP  Give end-of-session beep% 29-Nov-98 -- created (RFM)nicebeep('2c',200);return

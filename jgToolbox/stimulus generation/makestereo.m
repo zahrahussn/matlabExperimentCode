@@ -1,0 +1,1 @@
+function rgb=makestereo(left,right)r=scale(left);g=scale(right);b=0.85*g;rgb=cat(3,r,g,b);figure(5);imshow(rgb);

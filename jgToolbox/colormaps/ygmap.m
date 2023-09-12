@@ -1,0 +1,1 @@
+function [map] = ygmap(numpts,lowerpix,upperpix)defarg('numpts',256);defarg('lowerpix',0);defarg('upperpix',numpts-1);g = ones(numpts,1)*255;r = flipud(round(linspace(lowerpix,upperpix,numpts))');b = zeros(numpts,1);map = [r,g,b];return;

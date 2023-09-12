@@ -1,0 +1,1 @@
+function est = threshest( src )% THRESHEST  Get a threshold estimate from a pquest trial source%% est = threshest( src )% 29-Sep-98 -- created (RFM)% return final estimateest=src.final;return

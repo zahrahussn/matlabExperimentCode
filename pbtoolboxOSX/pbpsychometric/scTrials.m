@@ -1,0 +1,1 @@
+function n=scTrials(sc)%% function n=scTrials(sc)%% returns the number of trials in a staircase record%	n=sc.trialcount;	return;	

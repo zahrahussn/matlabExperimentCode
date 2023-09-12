@@ -1,0 +1,1 @@
+function screc=scCalcStepSize(datarec);%%	function screc=scCalcStepSize(datarec);%if (datarec.type~='staircase')	datarec=screc;	return;end;tmp=find(datarec.startusingstep==datarec.reversalcount);if ((length(tmp)==1)&(tmp(1)>0)&(tmp(1)<=length(datarec.steps)))	kk=tmp(1);	datarec.curstepsize=datarec.steps(kk);end;screc=datarec;return

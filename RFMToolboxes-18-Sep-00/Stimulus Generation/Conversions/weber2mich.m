@@ -1,0 +1,1 @@
+function mich = weber2mich( weber )% WEBER2MICH  Convert Weber contrast to Michelson contrast%% mich = weber2mich( weber )mich = weber./(weber+2);return

@@ -1,0 +1,1 @@
+function rndmat = rngstep( nvect, frames, params )% RNGSTEP  Generate matrix of displacements% decode parametersstep=params(1:2);% construct displacement matrixfor f=1:frames,	rndmat(:,:,f)=ones(nvect,1)*step;endreturn

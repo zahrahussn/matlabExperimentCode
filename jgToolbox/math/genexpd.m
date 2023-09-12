@@ -1,0 +1,1 @@
+function y = genexpd( x, varargin )% GENEXPD  Generalized exponential derivative% 04/05/98 - created (RFM)if nargin==2,	p=varargin{1};elseif nargin==4,	y=[ varargin{1} varargin{2} varargin{3} varargin{4} ];else	error('Invalid number of arguments');endy=p(3)*p(2)*exp(p(3)*(x-p(4)));return

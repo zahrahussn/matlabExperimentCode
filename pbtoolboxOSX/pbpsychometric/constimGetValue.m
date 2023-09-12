@@ -1,0 +1,1 @@
+function curValue=constimGetValue(csrec)	curValue=csrec.curvalue;	return;	

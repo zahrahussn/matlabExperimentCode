@@ -1,0 +1,1 @@
+function pdfmat = inv2pdf( invmat )% INV2PDF  Convert a discrete inverse CDF to a discrete PDF%% pdfmat = inv2pdf( invmat )% 08-Dec-98 -- created (RFM)m=size(invmat,1);pdfmat=zeros(m,2);pdfmat(:,1)=invmat(:,2);pdfmat(1,2)=invmat(1,1);for i=2:m,	pdfmat(i,2)=invmat(i,1)-invmat(i-1,1);endreturn

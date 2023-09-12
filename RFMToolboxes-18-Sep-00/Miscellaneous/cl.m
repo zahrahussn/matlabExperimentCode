@@ -1,0 +1,1 @@
+function clscreen('CloseAll');clear global winIDreturn

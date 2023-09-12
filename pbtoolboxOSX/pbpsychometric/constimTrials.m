@@ -1,0 +1,1 @@
+function n=constimTrials(csrec,index)	[n,m]=size(constim.trialcount);	if (index>0)&(index<=m)		n=constim.trialcount(index);	else		n=0;	end;		return;	

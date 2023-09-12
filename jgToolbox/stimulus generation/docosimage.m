@@ -1,0 +1,1 @@
+function x = docosimage(f,c,p,s,sd)% function x = docosimage(f,c,p,s,sd)defarg('f',2);defarg('c',0.1);defarg('s',256);defarg('p',0);		% cosine phasedefarg('sd','');center = s/2;x = ones(1,s)';x = x*(c*cos(2*pi*f*(((linspace(0,s,s)-center)./s))+p));if ~isempty(sd)	if sd > 0		x = x.*dogauss2d(s,sd);	endendreturn;

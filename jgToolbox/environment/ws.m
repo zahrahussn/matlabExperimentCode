@@ -1,0 +1,1 @@
+% ws.m% shortcut for 'workspace'.%% June 26, 1998  JMG  U of T Visio Labworkspace;

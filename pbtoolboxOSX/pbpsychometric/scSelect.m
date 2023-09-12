@@ -1,0 +1,1 @@
+function n=scSelect(numcases)	n=1+floor(numcases*rand);	return;	

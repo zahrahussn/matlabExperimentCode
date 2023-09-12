@@ -1,0 +1,1 @@
+function r = reversals( src )% REVERSALS  Get number of reversals so far from a UDTR trial source%% r = reversals( src )% 30-Sep-98 -- created (RFM)r=src.nreversals;return

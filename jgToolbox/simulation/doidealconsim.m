@@ -1,0 +1,1 @@
+meanslope = mean(data(:,1));meanie = dblexp(m2ieparams(1),m2ieparams(2),m2ieparams(3),m2ieparams(4),m2ieparams(5),meanslope);stdslope = std(data(:,1));stdie = meanie - dblexp(m2ieparams(1),m2ieparams(2),m2ieparams(3),m2ieparams(4),m2ieparams(5),meanslope+stdslope);upperlimit2sd = meanie+2*stdie;lowerlimit2sd = meanie-2*stdie;

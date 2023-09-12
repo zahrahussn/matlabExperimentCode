@@ -1,0 +1,1 @@
+function e = pausetoc( timems )global PAUSETICTOCe=1000*etime(clock,PAUSETICTOC);while (1000*etime(clock,PAUSETICTOC))<timems,endreturn

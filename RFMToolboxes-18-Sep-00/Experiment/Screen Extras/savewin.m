@@ -1,0 +1,1 @@
+function savewin( winID, fname, bglum )% SAVEWIN  Save a window to file%% savewin( winID, fname, bglum )% 07-Jun-99 -- created (RFM)mv=screen(winID,'GetImage');if nargin>=3,	mv(find(mv==0))=lum2rgb(bglum);endmv=rgb2lum(mv)/rgb2lum(255);imwrite(mv,fname);return

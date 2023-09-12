@@ -1,0 +1,1 @@
+function eqpos = eqp( neg, k )% EQP  Equivalent positive Weber contrast%% eqpos = eqp( neg, k )eqpos = -neg./(2*k*neg+1);return

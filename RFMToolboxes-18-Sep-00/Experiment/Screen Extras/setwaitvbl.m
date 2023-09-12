@@ -1,0 +1,1 @@
+function setwaitvbl( screenNum, flag )% SETWAITVBL  Set the WaitVBL preference%% setwaitvbl( screenNum, flag )% 08-Oct-99 -- created (RFM)defarg('screenNum',0);defarg('flag',1);screen(screenNum,'Preference','WaitForVBLInterrupt',flag);return

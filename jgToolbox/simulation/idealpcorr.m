@@ -1,0 +1,1 @@
+function p = idealpcorr( sigmean, sigcov, ntrials )% IDEALPCORR  Ideal observer's percent correct%% p = idealpcorr( sigmean, sigcov, ntrials )% 26-Aug-98 -- created (RFM)defarg('ntrials',1000);D=size(sigmean,2);for j=1:D,	mu=sigmean(:,j);	sig=normmvrnd(mu,sigcov,ntrials);	sigj=ones(D,1)*sig(j,:);	corr=(sum(sig>sigj)==0);	p(j,1)=sum(corr)/ntrials;endreturn

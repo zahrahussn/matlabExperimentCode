@@ -1,0 +1,1 @@
+function [cm] = inch2cm(inches)% function [cm] = inch2cm(inches)%% Converts inches into centimeters.cm = 2.54*inches;return

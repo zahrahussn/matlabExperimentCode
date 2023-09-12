@@ -1,0 +1,1 @@
+function q = getq( src )% GETQ  Get the Psychophysics Toolbox 'q' structure from a pquest trial source%% q = getq( src )% 01-Oct-98 -- created (RFM)% return qq=src.q;return

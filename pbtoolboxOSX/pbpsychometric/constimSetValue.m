@@ -1,0 +1,1 @@
+function csrec=constimSetValue(csrec,v)	tmp=abs(csrec.values-v);	[y,i]=min(tmp);	csrec.curindex=i;	csrec.curvalue=csrec.values(i);	return;

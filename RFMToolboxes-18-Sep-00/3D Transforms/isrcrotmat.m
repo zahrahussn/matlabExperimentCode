@@ -1,0 +1,1 @@
+function mat = isrcrotmat( xs, ys, zs )% ISRCROTMAT  Inhomogeneous source-rotation matrix%% mat = isrcrotmat( xs, ys, zs )% 24-Jul-99 -- created (RFM)xs=inhom2hom(xs);ys=inhom2hom(ys);zs=inhom2hom(zs);mat=[ xs' 0 ;      ys' 0 ;	  zs' 0 ;	  0 0 0 1 ];return

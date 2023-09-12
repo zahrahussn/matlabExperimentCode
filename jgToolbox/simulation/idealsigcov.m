@@ -1,0 +1,1 @@
+function sigcov = idealsigcov( prep, noiseps )% IDEALSIGCOV  Get covariance matrix of cross-correlation signals%% sigcov = idealsigcov( prep, noiseps )% 07-Sep-98 -- created (RFM)% make covariance matrixsigcov=[];for i=1:prep.T,	for j=i:prep.T,		sigcov(i,j)=abs(sum(sum( prep.templateprod{i,j}.*(noiseps) )));		sigcov(j,i)=sigcov(i,j);	endendreturn

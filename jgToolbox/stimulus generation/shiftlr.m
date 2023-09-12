@@ -1,0 +1,1 @@
+function m = shiftlr(m,n)% function m = shiftlr(m,n)%% shift horizontally% negative is leftdefarg('n',0);% shift horizontally% negative is leftn = round(n);if size(m,2) > 1 & n ~= 0	if n < 0				s = m(:,1:abs(n));		m = [m(:,abs(n)+1:end),s];			elseif n > 0		s = m(:,end-abs(n)+1:end);		m = [s,m(:,1:end-abs(n))];			end	endreturn;

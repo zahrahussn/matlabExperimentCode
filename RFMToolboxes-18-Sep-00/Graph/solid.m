@@ -1,0 +1,1 @@
+function newh = solid( hlist )for h=hlist(:)',	set(h,'MarkerFaceColor',get(h,'Color'));endnewh=hlist;return

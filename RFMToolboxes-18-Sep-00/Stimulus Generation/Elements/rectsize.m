@@ -1,0 +1,1 @@
+function [ out1, out2 ] = rectsize( rect )% RECTSIZE  Returns the size of a rectangle%% sizemat = rectsize( rect )% [ X Y ] = rectsize( rect )if nargout==1,	out1 = [ rect(3)-rect(1) rect(4)-rect(2) ];elseif nargout==2,	out1=rect(3)-rect(1);	out2=rect(4)-rect(2);else	error('Invalid number of output arguments');endreturn

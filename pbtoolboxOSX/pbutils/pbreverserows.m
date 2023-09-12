@@ -1,0 +1,1 @@
+function out=pbreverserows(in)%% function out=pbreverserows(in)% reverses the order of rows; columns unchanged%	out=zeros(size(in));	[nr,nc]=size(in);	n=1;	for kk=nr:-1:1		out(n,:)=in(kk,:);		n=n+1;	end;return	

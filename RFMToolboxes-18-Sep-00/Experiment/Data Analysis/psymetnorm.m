@@ -1,0 +1,1 @@
+function p = psymetnorm( x, mu, sigma, pmin, pmax )% PSYMETNORM  Psychometric function based on normal cdf%% p = psymetnorm( x, mu, sigma, pmin, pmax )% 28/04/98 - created (RFM)defarg('pmin',0.5);defarg('pmax',1.0);p = pmin+(pmax-pmin)*normcdf(x,mu,sigma);return

@@ -1,0 +1,1 @@
+function figname( name )% FIGNAME  Set a figure's name%% figname( name )% 20-Aug-98 -- created (RFM)set(gcf,'Name',name);return

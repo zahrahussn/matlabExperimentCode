@@ -1,0 +1,1 @@
+% cf.m%% Clears the functions present in the workspace.% July 1998  JMG  U of T Vision Labclear functions;return

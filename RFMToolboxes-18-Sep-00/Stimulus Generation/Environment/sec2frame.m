@@ -1,0 +1,1 @@
+function frame = sec2frame( sec, roundflag )% SEC2FRAME  Convert seconds to frames%% frame = sec2frame( sec, roundflag )% 08-Sep-98 -- created (RFM)% set default argumentsdefarg('roundflag',1);global ENVIRONframe=sec*ENVIRON.monitor.fps;if roundflag,	frame=round(frame);endreturn

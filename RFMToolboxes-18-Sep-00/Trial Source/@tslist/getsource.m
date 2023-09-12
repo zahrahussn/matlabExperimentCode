@@ -1,0 +1,1 @@
+function src = getsource( list, n )% GETSOURCE  Get one trial source in a list%% src = getsource( list, n )% 30-Sep-99 -- created (RFM)if n<=list.nsources,	src=list.sources{n};else	src=[];endreturn

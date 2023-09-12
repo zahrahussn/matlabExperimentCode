@@ -1,0 +1,1 @@
+function [points] = pix2points(pix,screenSize,resolution)% function [points] = pix2points(pix,screenSize,resolution)%% 1 cm = 28.3464566929 points.if nargin > 1	points = pix2cm(pix,screenSize,resolution)*28.3464566929;else	points = pix2cm(pix)*28.3464566929;endreturn;

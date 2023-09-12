@@ -1,0 +1,1 @@
+function [y,ndx] = sortcols(x,row)if nargin > 1	[y,ndx] = sortrows(x',row');elseif nargin == 1	[y,ndx] = sortrows(x');elseif nargin<1	error('Not enough input arguments.');end		y = y';ndx = ndx';return;

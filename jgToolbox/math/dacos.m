@@ -1,0 +1,1 @@
+function x = dacos( y )% DACOS  Arccosine function ( returns degrees )%% x = dacos( y )% 17-Aug-98 -- created (RFM)x = rad2deg(acos(y));return

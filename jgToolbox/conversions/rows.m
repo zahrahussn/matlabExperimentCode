@@ -1,0 +1,1 @@
+function [numrows] = rows(matrix)% function [numrows] = cols(matrix)%% returns the number of rows in a matrix.numrows = size(matrix,1);return

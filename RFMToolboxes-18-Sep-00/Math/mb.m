@@ -1,0 +1,1 @@
+function [ m, b ] = mb( p1, p2 )% MB  Slope and x-intercept of line through two points%% [ m, b ] = mb( p1, p2 )% 01-May-99 -- created (RFM)m=(p2(2)-p1(2))/(p2(1)-p1(1));b=p1(1)-(p1(2)/m);return

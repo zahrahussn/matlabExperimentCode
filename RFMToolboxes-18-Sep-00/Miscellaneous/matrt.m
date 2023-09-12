@@ -1,0 +1,1 @@
+function [ r, t ] = matrt( mat, centreij )% MATRT  Make r-theta coordinate matrices for a matrix%% [ r, t ] = matrt( mat, centreij )% 18-Oct-99 -- created (RFM)% make xy coordinate matricesif nargin==1,	[x,y]=matxy(mat);else	[x,y]=matxy(mat,centreij);end% convert to polar coordinatesr=sqrt(x.^2+y.^2);if nargout>=2,	t=atan2(y,x);endreturn

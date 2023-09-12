@@ -1,0 +1,1 @@
+function actapp(name)% function actapp(name)% % uses applescript to make another application active.%% adapted from the function 'acopy'.%% July 14, 1997  JMG U of T Vision Labname = ['"',name,'"'];resultString = applescript('actapp.as','-useEnglish','appname',name);resultString = resultString(2:end-1); % strip off excess quotesdisp(resultString);

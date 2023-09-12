@@ -1,0 +1,1 @@
+%subs = {'ajr','amc','jmg','ideal'};subs = {'ideal'};conds = {'real','modal','amodal','mask','control'};for i = 1:length(conds)	for j = 1:length(subs)		HTkanizaCS(subs{j},conds{i});	endend

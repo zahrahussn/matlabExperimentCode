@@ -1,0 +1,1 @@
+function [r1] = radarea(r0,a)% function [r1] = radarea(r0,a)%% computes the radius that makes a band% of area A from r0 to r1.%% derivation%% 		a = pi*r1^2 - pi*r0^2% pi*r1^2 = a + pi*r0^2%    r1^2 = a/pi + r0^2%      r1 = sqrt(a/pi + r0^2)%% april 17 1999 jmgr1 = sqrt(a/pi + r0^2);return

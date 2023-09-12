@@ -1,0 +1,1 @@
+function s = replacechar(s,c,n)% function rmchar(s,c,n)%% replaces the character C in the string S with the% character N.% % March 18 2000  JMGlocs = find(s==c);if ~isempty(locs),	s(locs) = n;endreturn;

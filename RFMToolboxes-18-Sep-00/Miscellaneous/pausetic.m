@@ -1,0 +1,1 @@
+function pauseticglobal PAUSETICTOCPAUSETICTOC=clock;return

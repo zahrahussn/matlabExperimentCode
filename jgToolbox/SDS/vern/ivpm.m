@@ -1,0 +1,1 @@
+% ivpm.m - ideal observer's Vernier acuity psychometric function[ Trials Alpha Beta] = RunSDS('Vern0','Vern1',[ 0 1 2 3 4 ],100);eval([ 'save ivpm_' num2str(fix(clock)) ' Trials Alpha Beta' ]);

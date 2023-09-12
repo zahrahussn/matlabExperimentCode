@@ -1,0 +1,23 @@
+alldone=0;
+
+% oneKey=30;
+% twoKey=31;
+% threeKey=32;
+% fourKey=33;
+% goodKeys=[oneKey,twoKey,threeKey,fourKey];
+
+FlushEvents('keyDown');
+while (~alldone)
+    WaitSecs(0.001);
+    [keyIsDown,secs,keyCode] = KbCheck();
+    FlushEvents('keyDown');
+    fprintf('\n key pressed = %i\n',);
+    if (keyIsDown)
+        theKeys=find(keyCode==1)
+        if (length(theKeys)==1)&& max(ismember(goodKeys,theKeys(1)))==1
+            alldone=1;
+            clc;
+        end;
+        FlushEvents('keyDown');
+    end;
+end;

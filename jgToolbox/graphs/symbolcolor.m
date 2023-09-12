@@ -1,0 +1,1 @@
+function color = symbolcolor(colornumber)thecolors = 'krgbmcy';if colornumber > length(thecolors)	colornumber = rem(colornumber,length(thecolors));	colornumber = colornumber + colornumber==0;endcolor = thecolors(colornumber);return

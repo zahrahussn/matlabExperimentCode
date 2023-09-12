@@ -1,0 +1,1 @@
+function checkpath% CHECKPATH  Check to see that an experiment's path has been set with setpath.m% 31-Aug-98 -- created (RFM)global cnHomeDirif isempty(cnHomeDir),	error('Path not set');endreturn

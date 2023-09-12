@@ -1,0 +1,1 @@
+function vv = orthproj( view, iv )% ORTHPROJ  Orthogonal projection%% vv = orthproj( view, iv )% 24-Jul-99 -- created (RFM)iv=hom2inhom(iv);pv=view*iv;pv=inhom2hom(pv);vv=pv([ 1 2 ],:);return

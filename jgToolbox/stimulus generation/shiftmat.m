@@ -1,0 +1,1 @@
+function m = shiftmat(m,x,y)defarg('x',0);defarg('y',0);m = shiftlr(m,x);m = shiftud(m,y);return;	

@@ -1,0 +1,1 @@
+function finished=psyfuncfinished(datarec,p1,p2)		switch datarec.type	case 'staircase'		if (nargin==1)			finished=scComplete(datarec);		else			finished=scComplete(datarec,p1,p2);		end;	case 'constantstimulus'		finished=constimComplete(datarec);	otherwise		disp('error in PSYFUNCFINISHED; unknown data structure');		finsihed=0;	end;return;

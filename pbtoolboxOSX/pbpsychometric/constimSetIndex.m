@@ -1,0 +1,1 @@
+function csrec=constimSetIndex(csrec,index)	if (index>0)&(index<=csrec.numvalues)		csrec.curindex=index;		csrec.curvalue=csrec.values(index);	end;	return;

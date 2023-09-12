@@ -1,0 +1,1 @@
+function eucsize = vectsize( vect )% VECTSIZE  Euclidean size of a vector%% eucsize = vectsize( vect )eucsize = sqrt(sum(sum(vect(:).^2)));return

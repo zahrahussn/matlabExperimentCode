@@ -1,0 +1,1 @@
+function [s,i] = lineparams(x,y)deltaY = y(2)-y(1);deltaX = x(2)-x(1);s = deltaY/deltaX;i = y(2)-s*x(2);return

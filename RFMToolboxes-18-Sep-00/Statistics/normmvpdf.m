@@ -1,0 +1,1 @@
+function p = normmvpdf( x, mu, sigma )% NORMMVPDF  Multivariate normal probability density function%% p = normmvpdf( x, mu, sigma )% 14-Sep-98 -- created (RFM)x=x(:);mu=mu(:);D=size(mu,1);p = (1/(power(2*pi,D/2)*sqrt(abs(det(sigma)))))*exp(-0.5*(x-mu)'*inv(sigma)*(x-mu));return

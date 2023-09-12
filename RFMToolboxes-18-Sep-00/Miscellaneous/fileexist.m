@@ -1,0 +1,1 @@
+function status = fileexist( fname )% FILEEXIST  Determine whether a file exists in the current directory%% status = fileexist( fname )filedat = dir( fname );status = (size(filedat,1)>0);return

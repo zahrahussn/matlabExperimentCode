@@ -1,0 +1,1 @@
+function z=zscore(p)%%	function z=zscore(p)% 	z=norminv(p,0,1);	z=norminv(p,0,1);	return;

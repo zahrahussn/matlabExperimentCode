@@ -1,0 +1,1 @@
+function [a] = freq1Dtofreq2D(m)% fftftm = fftshift(abs(fft2(m)));% create coordinatessz = size(m,1);x = ones(1,sz)'*(-sz/2:sz/2-1);y = -x';disfromcenter = round(sqrt(x.^2 + y.^2));% search and collapsefor i = 1:sz/2	locs = find(disfromcenter==i);	a(i) = sum(ftm(locs))/length(locs);endreturn

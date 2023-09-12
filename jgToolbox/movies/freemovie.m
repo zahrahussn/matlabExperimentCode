@@ -1,0 +1,1 @@
+function freemovie( reel )% FREEMOVIE  Free windows allocated for movie frames.%% freemovie( reel )%     - <reel> is structure allocated by INITMOVIE%% See also INITMOVIE, FILMMOVIE, PLAYMOVIE.% 23.I.98 -- created (RFM)for f=1:reel.nframes,	screen(reel.frameID(f),'Close');endreturn

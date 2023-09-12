@@ -1,0 +1,1 @@
+function [map] = ybwmap(numpts,lowerpix,upperpix)defarg('numpts',256);defarg('lowerpix',0);defarg('upperpix',numpts-1);b = linspace(lowerpix,upperpix,numpts)';r = ones(size(b))*upperpix;g = r;map = [r,g,b];return;

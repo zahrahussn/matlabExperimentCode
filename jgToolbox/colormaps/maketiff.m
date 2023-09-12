@@ -1,0 +1,1 @@
+function [thetiff] = maketiff(theimage,map)theimage = round(scalearb(theimage,1,length(map)));for i = 1:size(theimage,1)	for j = 1:size(theimage,2)		currRGB = map(theimage(i,j),:);		thetiff(i,j,1) = currRGB(1);		thetiff(i,j,2) = currRGB(2);		thetiff(i,j,3) = currRGB(3);	endendthetiff = uint8(thetiff);return;		

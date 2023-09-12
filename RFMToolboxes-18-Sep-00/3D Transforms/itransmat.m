@@ -1,0 +1,1 @@
+function mat = itransmat( tv )% ITRANSMAT  Inhomogeneous translation matrix%% mat = itransmat( tv )% 23-Jul-99 -- created (RFM)htv=inhom2hom(tv);mat=[ 1 0 0 htv(1) ; ...      0 1 0 htv(2) ; ...	  0 0 1 htv(3) ; ...	  0 0 0 1 ];return

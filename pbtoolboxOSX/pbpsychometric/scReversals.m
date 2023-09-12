@@ -1,0 +1,1 @@
+function n=scReversals(sc)%% function n=scReversals(sc)%% Returns the number of reversals in a staircase record.%n=sc.reversalcount;	return;	

@@ -1,0 +1,1 @@
+function rndmat = rngnorm( nvect, frames, params )% RNGNORM  Generate matrix of normally distributed random displacements.for i=1:frames,	theta = random('norm',deg2rad(params(2)),deg2rad(params(3)),nvect,1);	rndmat(:,:,i) = round( params(1)*[ -sin(theta) cos(theta) ] );endreturn

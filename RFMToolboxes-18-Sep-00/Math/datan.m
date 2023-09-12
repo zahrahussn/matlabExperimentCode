@@ -1,0 +1,1 @@
+function x = datan( y )% DATAN  Arctangent function ( returns degrees )%% x = datan( y )% 17-Aug-98 -- created (RFM)x = rad2deg(atan(y));return

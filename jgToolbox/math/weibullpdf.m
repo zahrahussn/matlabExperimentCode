@@ -1,0 +1,1 @@
+function y = weibullpdf(x,alpha,beta)% WEIBULLPDF  Modified Weibull PDFy=beta.*power(x./alpha,beta-1).*exp(-power(x./alpha,beta));y(find(x<0))=0;return

@@ -1,0 +1,1 @@
+function s = subjectdlgglobal scwaitfor(subjectctl);s=lower(sc);clear global sc;return

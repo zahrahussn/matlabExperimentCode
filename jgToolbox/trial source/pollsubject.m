@@ -1,0 +1,1 @@
+function success = pollsubject( subject, level )% POLLSUBJECT  Get a response from a subject model.%% success = pollsubject( subject, level )% 28-Jan-98 -- created (RFM)success = (rand(size(level))<subject.psymet(level));return

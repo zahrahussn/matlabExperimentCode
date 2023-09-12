@@ -1,0 +1,1 @@
+function sec = frame2sec( frame )% FRAME2SEC  Convert frames to seconds%% sec = frame2sec( frame )% 08-Sep-98 -- created (RFM)global ENVIRONsec=frame/ENVIRON.monitor.fps;return

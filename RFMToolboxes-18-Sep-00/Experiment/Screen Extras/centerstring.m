@@ -1,0 +1,1 @@
+function centerstring( winID, str )% CENTERSTRING  Centre a string in a graphics windowglobal ENVIRONfg = ifso( isempty(ENVIRON), 255, ENVIRON.fgcind );oldSize=screen(winID,'TextSize',30);width=screen(winID,'TextWidth',str);mid = rectmid(screen(winID,'Rect'));screen(winID,'DrawText',str,round(mid(1)-(width/2)),mid(2),fg);screen(winID,'TextSize',oldSize);return

@@ -1,0 +1,1 @@
+function flushkeyboard% FLUSHKEYBOARD  Clear available characters from input stream%% flushkeyboardwhile charavail,	getchar;endreturn

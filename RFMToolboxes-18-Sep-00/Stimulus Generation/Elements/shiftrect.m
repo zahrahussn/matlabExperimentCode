@@ -1,0 +1,1 @@
+function newr = shiftrect( r, dx, dy )% SHIFTRECT  Shift a coordinate rectangle%% newr = shiftrect( r, dx, dy )%% newr = shiftrect( r, dr )% 07-Nov-99 -- created (RFM)if nargin==2,	dr = dx;else	dr = [ dx dy ];endnewr=r+[ dr dr ];return

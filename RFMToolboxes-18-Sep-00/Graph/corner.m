@@ -1,0 +1,1 @@
+function corner( fignum )if nargin==0,	fignum=gcf;end;screenRect=get(0,'ScreenSize');x=screenRect(3);y=screenRect(4);d=17;set(fignum,'Position',round([ x/2-d 0+d x/2 y/2 ]));drawnow;return

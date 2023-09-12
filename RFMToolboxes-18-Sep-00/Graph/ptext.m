@@ -1,0 +1,1 @@
+function h = ptext( ah, px, py, txt )if nargin<4,	txt=py;	py=px;	px=ah;	ah=gca;endh=[];for hi=ah(:)',	axes(hi);	xlim=get(gca,'XLim');	ylim=get(gca,'YLim');	x0=xlim(1)+px*(xlim(2)-xlim(1));	y0=ylim(1)+py*(ylim(2)-ylim(1));	h=[ h text(x0,y0,txt) ];endreturn

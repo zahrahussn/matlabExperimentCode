@@ -1,0 +1,1 @@
+function dfbuffer( flag )% DFBUFFER  Flag whether to store data in a buffer or to write directly to file% % dfbuffer( flag )% 03-May-99 -- created (RFM)global dfif isempty(df) | (~isfield(df,'bufferflag')),	df.bufferi=0;	df.buffer=[];enddf.bufferflag=flag;return

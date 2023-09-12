@@ -1,0 +1,1 @@
+function y = dsin( x )% DSIN  Sine function ( argument in degrees )%% y = dsin( x )% 17-Aug-98 -- created (RFM)y = sin(deg2rad(x));return

@@ -1,0 +1,133 @@
+function calFitRecord=pbCalibrate(stimpix,portNumber,background,whichScreen)
+%
+% function calFitRecord=pbCalibrate(stimpix,portNumber,background,whichScreen)
+%
+    alldone=0;
+    while(alldone==0)
+        fprintf('\t$ SELECT CALIBRATION METHOD\n')
+        fprintf('\t\t standard RGB\t\t1\n')
+        fprintf('\t\t bit-stealing RGB\t2\n')
+        fprintf('\t\t BITS++ box\t\t3\n')
+        fprintf('\t\t none (exit)\t\tx\n')
+        gotone=lower(input(sprintf('\t>> '),'s'));
+        alldone=ismember(gotone,'123x');
+    end;
+    switch gotone
+        case '1'
+            if (exist('whichScreen')==0)
+                % Find out how many screens and use largest screen number.
+                whichScreen = max(Screen('Screens'));
+                fprintf('No screen number provided. Using %g as default.\n',whichScreen);
+            end;
+
+
+            if (exist('background')==0)
+                fprintf('No rgb background provided. Will use [160,160,160] as default.\n');
+                rgbBackground=[160 160 160];
+            end;
+
+            if (exist('portNumber')==0)
+                fprintf('No port number provided. Will use 1 as default.\n');
+                portNumber=1;
+            end;
+
+            if (exist('stimpix')==0)
+                fprintf('No stim size provided. Will use 256 as default.\n');
+                stimpix=256;
+            end;
+            calFitRecord=pbCalibrateRGB(stimpix,portNumber,rgbBackground,whichScreen);
+        case '2'
+%             if (exist('whichScreen')==0)
+%                 % Find out how many screens and use largest screen number.
+%                 whichScreen = max(Screen('Screens'));
+%                 fprintf('No screen number provided. Using %g as default.\n',whichScreen);
+%             end;
+% 
+% 
+%             if (exist('background')==0)
+%                 fprintf('No rgb background provided. Will use [160,160,160] as default.\n');
+%                 rgbBackground=[160 160 160];
+%             end;
+% 
+%             if (exist('portNumber')==0)
+%                 fprintf('No port number provided. Will use 1 as default.\n');
+%                 portNumber=1;
+%             end;
+% 
+%             if (exist('stimpix')==0)
+%                 fprintf('No stim size provided. Will use 256 as default.\n');
+%                 stimpix=256;
+%             end;
+
+            calFitRecord=pbCalibrateBitStealing();
+        case '3'
+%             whichScreen = max(Screen('Screens'));
+%             bkgrndBITSnumber=12000;
+%             portNumber=1;
+%             stimpix=512;
+%             alldone=0;
+%             while (alldone==0)
+%                 fprintf('\tCalibration Parameters:\n');
+%                 fprintf('\t1... screen number = %i\n',whichScreen);
+%                 fprintf('\t2... port number = %i\n',portNumber);
+%                 fprintf('\t3... stimulus size (pixels) = %i\n',stimpix);
+% %                 fprintf('\t4... background BITS number = %i\n',bkgrndBITSnumber);
+%                 fprintf('\tx... do calibration\n');
+%                 gotone=lower(input(sprintf('\t>> '),'s'));
+%                 alldone=ismember(gotone,'123x');
+%             end; % while
+%                 switch gotone
+%                     case '1'
+%                         tmp = input(sprintf('\t screen number >> '));
+%                         if isnumeric(tmp)
+%                             whichScreen=round(abs(tmp));
+%                         end;
+%                     case '2'
+%                         tmp = input(sprintf('\t port number >> '));
+%                         if isnumeric(tmp)
+%                             portNumber=round(abs(tmp));
+%                         end;
+%                     case '3'
+%                         tmp = input(sprintf('\t stimulus size (pixels) >> '));
+%                         if isnumeric(tmp)
+%                             stimpix=round(abs(tmp));
+%                         end;
+% %                     case '4'
+% %                         tmp = input(sprintf('\t background BITS number >> '));
+% %                         if isnumeric(tmp)
+% %                             bkgrndBITSnumber=round(abs(tmp));
+% %                         end;
+%                     case 'x'
+%                         alldone=1;
+%                 end; % switch
+             calFitRecord=pbCalibrateBITS();
+                      
+
+           
+            
+%             if (exist('whichScreen')==0)
+%                 % Find out how many screens and use largest screen number.
+%                 whichScreen = max(Screen('Screens'));
+%                 fprintf('No screen number provided. Using %g as default.\n',whichScreen);
+%             end;
+%             
+% 
+%             if (exist('background')==0)
+%                 fprintf('No background provided. Will use 0.5 as default.\n');
+%                 background=12000;
+%             end;
+% 
+%             if (exist('portNumber')==0)
+%                 fprintf('No port number provided. Will use 1 as default.\n');
+%                 portNumber=1;
+%             end;
+% 
+%             if (exist('stimpix')==0)
+%                 fprintf('No stim size provided. Will use 256 as default.\n');
+%                 stimpix=256;
+%             end;
+% 
+        case '4'
+            calFitRecord=NaN;
+    end; % switch   
+

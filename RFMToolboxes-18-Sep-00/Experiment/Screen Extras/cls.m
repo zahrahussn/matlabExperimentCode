@@ -1,0 +1,1 @@
+function cls( winID, colour )% CLS  Clear graphics screen%% cls( winID, colour )if nargin<2,	global sgBGColour;	colour = notnull( sgBGColour, 0 );endscreen(winID,'FillRect',colour,screen(winID,'Rect'));return

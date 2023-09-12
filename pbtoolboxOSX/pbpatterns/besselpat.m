@@ -1,0 +1,1 @@
+function bimage=besselpat(nr,f);f=f*6.5455;nc=nr;zx=nc/2;zy=nr/2;bimage=zeros(nr,nc);x=0:(nc-1);x=x./nc;x=x-0.5;x=x*f;y=0:(nr-1);y=y./nr;y=y-0.5;y=y*f;dx=x.*x;dy=y.*y;for k0=1:nr	dist=sqrt(dx+dy(k0));	temp=real(besselj(0,dist));	bimage(k0,:)=temp;end;return;

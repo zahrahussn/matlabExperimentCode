@@ -1,0 +1,1 @@
+function closeall()% function closeall()% % shortcut to close all open files% and the screen function, if any% are open.%% September 21, 1998  JMGfclose all;screen CloseAll;return

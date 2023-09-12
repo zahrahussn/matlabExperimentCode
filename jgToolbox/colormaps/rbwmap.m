@@ -1,0 +1,1 @@
+function [map] = rbwmap(numpts,lowerpix,upperpix)defarg('numpts',256);defarg('lowerpix',0);defarg('upperpix',numpts-1);g = linspace(lowerpix,upperpix,numpts)';b = g;r = ones(size(g))*upperpix;map = [r,g,b];return;

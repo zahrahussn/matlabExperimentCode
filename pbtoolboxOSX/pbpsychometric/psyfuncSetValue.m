@@ -1,0 +1,1 @@
+function psyfuncrec=psyfuncSetValue(datarec,v)	switch datarec.type	case 'staircase'		psyfuncrec=scSetValue(datarec,v);	case 'constantstimulus'		psyfuncrec=constimSetValue(datarec,v);	otherwise		error('unknown type of data record');	end;return;

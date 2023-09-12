@@ -1,0 +1,1 @@
+function theImage=pbSpot2(nr,r);%% first, create an x,y grid that spans from -0.5 to +0.5if (nargin<1)	nr=256;end;if (nargin<2)	r=round(nr/2);end;nc=nr;[x,y]=meshgrid(0:(nc-1),0:(nr-1));c=round(nr/2);x=x-c;y=y-c;% now, draw the spotrtmp=r*r;theImage=(((x.*x)+(y.*y))<=rtmp);return;

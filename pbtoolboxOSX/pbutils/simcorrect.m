@@ -1,0 +1,1 @@
+function r=simcorrect(contrast,alpha,beta,gamma,delta)	p=weibullcdf(contrast,alpha,beta);	p=gamma+(1-gamma+delta)*p;	r = (rand<=p);return

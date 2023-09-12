@@ -1,0 +1,1 @@
+function cdf = pdf2cdf( pdf )% PDF2CDF  Convert a PDF to a CDF.cdf(1,:)=pdf(1,:);N=size(pdf,1);for i=2:N,	cdf(i,:) = [ pdf(i,1) cdf(i-1,2)+pdf(i,2) ];end% just in case of round-offcdf(N,2)=1;return

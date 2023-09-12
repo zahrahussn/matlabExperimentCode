@@ -1,0 +1,1 @@
+function [ Image ] = Int1Img( StimLev, Unc )Image=IntImg(1+(StimLev/20));return

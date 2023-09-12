@@ -1,0 +1,1 @@
+function newsrc = telltrial( src, level, success )% TELLTRIAL  Report result of a trial to a constim trial source%% newsrc = telltrial( src, level, success )% 27-Sep-98 -- created (RFM)% no effectnewsrc=src;return

@@ -1,0 +1,1 @@
+function [ newsrc, level, id ] = gettrial( src )% GETTRIAL  Poll a UDTR trial source%% [ newsrc, level, id ] = gettrial( src )% 28-Jan-98 -- created (RFM)% 27-Sep-98 -- made object-oriented (RFM)id=src.id;if isdone(src),	level=NaN;else	level=src.levels(src.leveli);	src.trial=src.trial+1;endnewsrc=src;return

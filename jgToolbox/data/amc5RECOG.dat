@@ -1,0 +1,1 @@
+% Data File Name: amc5RECOG.dat% false memory experiment% block=1% handedness=right% age=23% Snellen=20/20% condition=7% *wordtype 1 = Old Word; wordtype 2 = New Word; wordtype 3 = Lure Word;% *trial = 1; response = 2; wordtype = 3; word number = 4; serial position = 5;  rt = 6; seed = 7;% *Date= '7/9/2001';% *Time= '17:43:40';

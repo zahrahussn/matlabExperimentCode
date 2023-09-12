@@ -1,0 +1,1 @@
+function curValue=scGetValue(sc)	curValue=sc.curvalue;	return;	

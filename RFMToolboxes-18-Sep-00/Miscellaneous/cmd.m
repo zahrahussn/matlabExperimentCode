@@ -1,0 +1,1 @@
+function cmd( fname )if exist(fname,'file'),	dfread(fname,0);else	fnameext=[ fname '.txt' ];	if exist(fnameext,'file'),		dfread(fnameext,0);	else		error(sprintf('Cannot find file ''%s''',fname));	endendreturn

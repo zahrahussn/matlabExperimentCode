@@ -1,0 +1,1 @@
+function varargout = matmid( matsize )% MATMID  Centre coordinates of a matrix%% mid = matmid( matsize )% 01-Jul-98 -- created (RFM)m=floor(matsize./2)+1;if nargout==1,	varargout{1}=m;else	for i=1:nargout,		varargout{i}=m(i);	endendreturn

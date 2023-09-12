@@ -1,0 +1,1 @@
+function y = dcot( x )% DCOT  Cotangent function ( argument in degrees )%% y = dcot( x )% 17-Aug-98 -- created (RFM)y = cot(deg2rad(x));return

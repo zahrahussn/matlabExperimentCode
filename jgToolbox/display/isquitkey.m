@@ -1,0 +1,1 @@
+function [isquit] = isquitkey(key)% function [isquit] = isquitkey(key)%% determines if a keypress was the quit key (ESC).% ASCII code for ESC is 27.%% July 1 1998  JMG U of T Vision Labif abs(key) == 27	isquit = 1;else	isquit = 0;end

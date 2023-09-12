@@ -1,0 +1,1 @@
+function y = weibullcdf(x,alpha,beta)% WEIBULLCDF  Modified Weibull CDFy=1-exp(-(x./alpha).^beta);y(find(x<0))=0;return

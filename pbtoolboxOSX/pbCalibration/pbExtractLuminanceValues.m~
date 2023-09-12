@@ -1,0 +1,12 @@
+function lumValues = pbExtractLuminanceValues(calrecord,type)
+
+    if nargin<2
+        type=0;
+    end;
+    
+    if type==0
+        lumValues = calrecord.caldata(:,5);
+    else
+        if pbisBITScalrecord(calrecord)
+        lumValues = calrecord.bitsmatrix
+    

@@ -1,0 +1,1 @@
+function b = ishom( v )% ISHOM  Determines whether a 3D vector is homogeneous%% b = ishom( v )% 24-Jul-99 -- created (RFM)b=(size(v,1)==3);return

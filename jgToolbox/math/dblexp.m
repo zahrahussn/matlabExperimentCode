@@ -1,0 +1,1 @@
+function y = dblexp(x,params)if length(params)==5	y = params(1) + params(2).*exp(-params(3).*x) + params(4).*exp(-params(5).*x);else	y = nan;endreturn

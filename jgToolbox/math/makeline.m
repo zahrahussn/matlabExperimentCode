@@ -1,0 +1,1 @@
+function params = makeline(y0,y1,x0,x1)% function params = makeline(y0,y1,x0,x1)%% returns the the slope and intercept of the line through the points% (x0,y0) and (x1,y1) in a 2 element vector. %% June 22, 1996	J Gold	P J Bennett A B Sekuler U of T Vision Lab   params(1) = (y1-y0)/(x1-x0);params(2) = y1 -params(1)*x1;return

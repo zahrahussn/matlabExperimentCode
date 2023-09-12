@@ -1,0 +1,1 @@
+function status = inrect( pos, rect )% INRECT  Determine whether a point is in a rectangle.status = (pos(1)>=rect(1)) & (pos(1)<=rect(3)) & ...	(pos(2)>=rect(2)) & (pos(2)<=rect(4));return

@@ -1,0 +1,1 @@
+function practice(thetype)defarg('thetype','kaniza');if strcmp(thetype,'kaniza')	kaniza('tst','modal',25,2,33,1,4);	del tst*;	endreturn

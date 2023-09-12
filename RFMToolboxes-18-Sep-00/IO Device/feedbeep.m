@@ -1,0 +1,1 @@
+function feedbeep( correct )% FEEDBEEP  Give feedback beep%% feedbeep( correct )% 29-Nov-98 -- created (RFM)nicebeep(ifso(correct,'3a','2a'),100,ifso(correct,0.25,1.00));return

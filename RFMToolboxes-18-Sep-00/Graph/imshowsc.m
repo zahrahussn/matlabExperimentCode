@@ -1,0 +1,1 @@
+function r = imshowsc( varargin )varargin{1}=imscale(varargin{1});r = imshow( varargin{:} );if nargout==0,	clear rendreturn

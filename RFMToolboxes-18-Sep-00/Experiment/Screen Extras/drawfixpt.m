@@ -1,0 +1,1 @@
+function drawfixpt( winIDlist, fixcind )% DRAWFIXPT  Draw a fixation point into a window%% drawfixpt( winIDlist, fixcind )% 07-Jun-99 -- created (RFM)defarg('fixcind',getconfig('fgcind'));fixdot=fixcind*circ2d(2);for w=winIDlist(:)',	fixRect=centrerect(screen(w,'Rect'),[ 0 0 size(fixdot) ]);	screen(w,'PutImage',fixdot,fixRect);endreturn

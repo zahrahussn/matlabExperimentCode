@@ -1,0 +1,1 @@
+function clut = writeclut% WRITECLUT  Write the clut to its window%% clut = writeclut% 24-Aug-99 -- created (RFM)global CLUTscreen(CLUT.winID,'WaitVBL');screen(CLUT.winID,'SetClut',CLUT.mat);if nargout>0,	clut=CLUT.mat;endreturn

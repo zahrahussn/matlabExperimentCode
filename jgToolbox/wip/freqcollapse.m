@@ -1,0 +1,1 @@
+function freqamp = freqcollapse(matrix)ftmatrix = abs(fftshift(fft2(matrix)));freqamp = zeros(floor(max(size(matrix))/2),1);for i = 0:floor(max(size(matrix))/2)	filt = makeidealfilt(max(size(matrix)),i,i+1,0);	temp = ftmatrix.*filt;	area = pi*(i+1)^2-pi*(i)^2;	freqamp(i+1) = sum(sum(temp))/area;endreturn

@@ -1,0 +1,1 @@
+function [ Img ] = CSF1Img( StimLev, Unc )% CSF1Img - signal-present contrast sensitivity function test imageglobal Frequency;Size=64;Img = 5*( (StimLev/100)*(Sine2D(Size,1/Frequency,0,0).* ...	Gauss2D(Size,0.5/Frequency)) + 1 );return

@@ -1,0 +1,1 @@
+function percenttickh=gca;t1=get(h,'YTickLabel');tn=size(t1,1);t2={};for i=1:tn,	t2={ t2{:} , [ num2str(100*str2num(t1(i,:))) '%' ] };endset(h,'YTickLabel',t2);return

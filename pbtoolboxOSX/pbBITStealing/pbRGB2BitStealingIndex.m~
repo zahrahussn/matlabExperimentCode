@@ -1,0 +1,29 @@
+function bsnumber = pbRGB2BitStealingIndex(RGB,lut)
+%
+% function bsnumber = pbRGB2BitStealingIndex(RGB)
+% Converts an rgb value two an index into a Bit-stealing array
+%
+
+if nargin<2
+if (size(RGB,2)~=3)
+	error('RGB input must have 3 columns');
+end;
+
+if (exist('lut','var')==0)
+if isempty(pbBigRGBArray)
+	tmp=pbBitStealingArray;
+else
+	tmp=pbBigRGBArray;
+end;
+
+n=size(RGB,1);
+bsnumber=zeros(n,1); % assumes RGB is a 3 colum matrix
+for kk=1:n
+	rgbtmp=RGB(kk,:);
+	bsnumber(kk)=find(tmp(:,1)==rgbtmp(1)&tmp(:,2)==rgbtmp(2)&tmp(:,3)==rgbtmp(3));
+end;
+return;
+
+
+
+

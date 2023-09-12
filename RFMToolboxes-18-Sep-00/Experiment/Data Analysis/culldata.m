@@ -1,0 +1,1 @@
+function newdata = culldata( data, condition )% CULLDATA  Cull data by condition%% newdata = culldata( data, condition )% 19-Jan-00 -- created (RFM)j=0;for i=1:size(data,2);	eval(data{i}.cmd);	if strcmp(CONDITION,condition)==1,		j=j+1;		newdata{j}.lines=data{i}.lines;		newdata{j}.cmd=data{i}.cmd;	endendreturn

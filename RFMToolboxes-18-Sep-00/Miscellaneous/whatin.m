@@ -1,0 +1,1 @@
+function whatin( fname )% WHATIN  Display contents of a .mat file%% whatin( fname )vars = whos('-file',fname);load(fname);nvars = size(vars,1);for i=1:nvars,%	if eval(sprintf('isnumeric(%s)',vars(i).name)),%		eval( sprintf(' fprintf(1,''\\n%%s = %%d\\n'',''%s'',%s) ',vars(i).name,vars(i).name) );%	else		eval(vars(i).name);%	endendreturn

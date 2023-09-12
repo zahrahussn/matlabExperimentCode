@@ -1,0 +1,1 @@
+function savecomment(fid,str)% function savecomment(fid,str)%% saves a non-executable comment to a data file.%% July 1 1998  JMG U of T Vision Labstr = ['%% ',str,'\n'];fprintf(fid,str);return

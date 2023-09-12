@@ -1,0 +1,1 @@
+function mid = rectmid( rect )% RECTMID  Returns the midpoint of a rectangle%% mid = rectmid( rect )mid = [ rect(1)+rect(3) rect(2)+rect(4) ]/2;return

@@ -1,0 +1,1 @@
+function dfdebug( debugflag )% DFDEBUG  Set debug state%% dfdebug( debugflag )% 09-Oct-98 -- created (RFM)% set default argumentsdefarg('debugflag',1);global df% set debug flagdf.debug=ifso(debugflag==0,[],'on');return

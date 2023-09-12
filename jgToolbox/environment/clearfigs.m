@@ -1,0 +1,1 @@
+function clearfigs% function clearfigs%% clears all current figures%% April 10 1999 jmg% locate fall open figure handleshands   = get (0,'Children');   % clear for i = 1:length(hands)	delete(hands(i));endreturn

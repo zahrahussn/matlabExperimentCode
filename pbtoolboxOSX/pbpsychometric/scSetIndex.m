@@ -1,0 +1,1 @@
+function screc=scSetIndex(screc,index)	if (index>0)&(index<=length(screc.values))		screc.curindex=index;		screc.curvalue=screc.values(index);	end;	return;

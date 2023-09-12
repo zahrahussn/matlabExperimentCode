@@ -1,0 +1,1 @@
+% mp.m%% A Shortcut version of matlabpath(matlabpath). This is % cumbersome to type each time you want to reset the % path. Just type 'mp' in upper or lower case to reset% the path, including any modified toolbox m-files in the% cache.% % July 1998 JMG U of T Vision Lab matlabpath(matlabpath);return

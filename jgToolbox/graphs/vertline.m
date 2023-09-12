@@ -1,0 +1,1 @@
+function linehandle = vertline( xpos, linetype )% VERTLINE  Draw a vertical line on the current axesdefarg('linetype',':');ylim = get(gca,'YLim');linehandle=line([ xpos xpos ],ylim);set(linehandle,'LineStyle',linetype);return

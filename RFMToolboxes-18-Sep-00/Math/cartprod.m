@@ -1,0 +1,1 @@
+function p = cartprod( varargin )% CARTPROD  Cartesian product%% p = cartprod( set1, set2, ... )% 19-May-99 -- created (RFM)p=varargin{1};p=p(:);for i=2:nargin,	arg=varargin{i}(:);		n=size(p,1);	m=size(arg,1);	newp=[];	for j=1:n,		for k=1:m,			newp=[ newp ; p(j,:) arg(k) ];		end	end	p=newp;	endreturn

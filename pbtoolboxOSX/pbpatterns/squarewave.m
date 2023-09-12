@@ -1,0 +1,1 @@
+x=0:255;x=x*pi/255;f=8;c=0.025;lavg=0.5;f0=cos(f*x);f3=(1/3)*cos(3*f*x-pi);f5=(1/5)*cos(5*f*x);f7=(1/7)*cos(7*f*x-pi);f9=(1/9)*cos(9*f*x);sq=lavg*(1+c*(f0+f3+f5+f7+f9));% cw=1:256;% cw=cw/256;% cw=exp(-(1:256)/64);cw=ones(1,256);sqpat=cw'*sq;imshow(sqpat);

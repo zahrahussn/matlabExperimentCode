@@ -1,0 +1,1 @@
+function newsrc = showtslist( src )% SHOWTSLIST  Convert a tslist to struct%% newsrc = showtslist( src )% 28-Jan-98 -- created (RFM)% 27-Sep-98 -- made object-oriented (RFM)newsrc.sources=src.sources;newsrc.nsources=src.nsources;newsrc.active=src.active;newsrc.iperm=src.iperm;newsrc.perm=src.perm;newsrc.prevsource=src.prevsource;newsrc.trial=src.trial;return

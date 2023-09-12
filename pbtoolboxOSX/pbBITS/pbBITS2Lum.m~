@@ -1,0 +1,33 @@
+function lumValues=pbBITS2Lum(bitsValues,L,B,pellicoef)
+
+    if (exist('pellicoef','var')==1)
+        lumValues = pbPelliPower(pellicoef,bitsValues);
+    elseif (exist('L','var')==1)&(exist('B','var')==1)
+        if(size(L,2)~=1)
+            L=reshape(L,1,prod(size(L)));
+        end;
+        if(size(B,2)~=1)
+            B=reshape(B,1,prod(size(B)));
+        end;
+%         L=reshape(L,1,prod(size(L)));
+%         B=reshape(B,1,prod(size(B)));
+        if(length(L)~=length(B))
+            error('L and B must have the same number of elements');
+        end;
+        [nr,nc]=size(bitsValues);
+        bv1=reshape(bitsValues,1,nr*nc);
+        minB=min(B);
+        maxB=max(B);
+        tmp=find(bv1<minB); if
+        lumValues=interp1(B,L,bv1,'linear');
+        lumValues=reshape(lumValues,nr,nc);
+
+        
+        
+ 
+        bitsValues(find(bitsValues
+        lumValues=interp1(B,L,bitsValues,'linear');
+    else
+        lumValues=NaN;
+    end;
+    

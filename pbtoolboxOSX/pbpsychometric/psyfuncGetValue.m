@@ -1,0 +1,1 @@
+function curValue=psyfuncGetValue(datarec)	switch datarec.type	case 'staircase'		curValue=scGetValue(datarec);	case 'constantstimulus'		curValue=constimGetValue(datarec);	otherwise		error('unknown type of data record');	end;return;

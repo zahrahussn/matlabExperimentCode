@@ -1,0 +1,1 @@
+function cm = centreofmass( mat )% CENTREOFMASS  Find centre of mass of a matrix%% cm = centreofmass( mat )% 24-Aug-98 -- created (RFM)% 18-Oct-99 -- made nicer (RFM)[i,j]=matij(mat);cm(1)=sum(sum(mat.*i));cm(2)=sum(sum(mat.*j));cm=cm/sum(sum(mat));return

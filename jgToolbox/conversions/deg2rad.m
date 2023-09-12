@@ -1,0 +1,1 @@
+function [RAD] = deg2rad(DEG)% function [RAD] = deg2rad(DEG)%% Converts degrees to radians. Degrees are 1/360 of the% full arc of the unit circle, 2pi. So the degrees% must be multiplied by (2*pi/360).%% March 23, 1997.  JMG ABS PJB  U of Toronto Vision lab.RAD = DEG*(2*pi/360);return

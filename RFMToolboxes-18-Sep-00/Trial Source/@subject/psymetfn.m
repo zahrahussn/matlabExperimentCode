@@ -1,0 +1,1 @@
+function inline_psy = psymetfn( sub )% PSYMETFN  Get the inline psychometric function of a subject model%% inline_psy = psymetfn( sub )% 29-Sep-98 -- created (RFM)% return psychometric functioninline_psy=sub.psymet;return

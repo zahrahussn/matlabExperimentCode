@@ -1,0 +1,1 @@
+function mid = rectmid( rect )% RECTMID  Calculate midpiont of a rectangle.mid = [ rect(1)+rect(3) rect(2)+rect(4) ]/2;return

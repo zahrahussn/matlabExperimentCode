@@ -1,0 +1,1 @@
+function [theimage] = rgstereo(redimage,greenimage)if size(redimage) ~= size(greenimage)	return;endtheimage = zeros(size(redimage,1),size(redimage,2),3);locs = find(redimage~=0);redimage(locs) = redimage(locs)-greenimage(locs);greenimage(locs) = zeros(size(greenimage(locs)));theimage(:,:,1) = redimage;theimage(:,:,2) = greenimage;return;

@@ -1,0 +1,1 @@
+function mat = izrotmat( theta )% IZROTMAT  Inhomogeneous z-axis rotation matrix%% mat = izrotmat( theta )% 23-Jul-99 -- created (RFM)mat = [ cos(theta) -sin(theta) 0 0 ; ...        sin(theta)  cos(theta) 0 0 ; ...		0           0          1 0 ; ...		0           0          0 1 ];return

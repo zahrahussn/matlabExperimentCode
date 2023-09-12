@@ -1,0 +1,1 @@
+function linimg( imagemat )[ winID, winRect ]=screen(0,'OpenWindow');imageRect=centrerect(winRect,[ 0 0 size(imagemat) ]);screen(winID,'PutImage',imagemat,imageRect);wait;screen(winID,'Close');return

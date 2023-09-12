@@ -1,0 +1,1 @@
+function aimage=ampspec(simage); aimage=fftshift(abs(fft2(simage)));return;

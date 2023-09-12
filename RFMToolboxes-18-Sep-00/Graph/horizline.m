@@ -1,0 +1,1 @@
+function linehandle = horizline( ypos, linetype )% HORIZLINE  Draw a horizontal line on the current axesxlim = get(gca,'XLim');h=line(xlim,[ ypos ypos ]);if nargin>1,	set(h,'LineStyle',linetype);endif nargout>0,	linehandle=h;endreturn

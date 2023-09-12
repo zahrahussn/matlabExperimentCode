@@ -1,0 +1,1 @@
+function s = tprintf( varargin )s=sprintf(varargin{:});title(s);return

@@ -1,0 +1,1 @@
+function [numcols] = cols(matrix)% function [numcols] = cols(matrix)%% returns the number of columns in a matrix.numcols = size(matrix,2);return

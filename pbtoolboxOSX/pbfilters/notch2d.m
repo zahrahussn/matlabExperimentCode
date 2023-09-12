@@ -1,0 +1,1 @@
+function thefilter=notch2d(lowf,highf,orient1,orient2,dim)	tmp=filter2d(lowf,highf,orient1,orient2,dim);	tmp=tmp-1;	thefilter=-1*tmp;return;	

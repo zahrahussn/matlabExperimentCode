@@ -1,0 +1,1 @@
+function wave = sinebeep( freq, ms, amp, play )% SINEBEEP  Play a sine wave%% wave = sinebeep( freq, ms, amp, play )% 28-Jan-98 -- created (RFM)defarg('amp',1);defarg('play',1);if ischar(freq),	freq=notefreq(freq);endtheta=2*pi*freq*(ms/1000);samples=(ms/1000)*8192;wave=amp*sin(0:(theta/samples):theta);if play==1,	sound(wave);endreturn

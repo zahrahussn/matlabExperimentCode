@@ -1,0 +1,1 @@
+function imshowmovie(reel)n = size(reel,3);reel = scalearb(reel,0,1);for i = 1:n	imshow(reel(:,:,i));endreturn	

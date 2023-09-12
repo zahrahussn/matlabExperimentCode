@@ -1,0 +1,1 @@
+function mv = mat2movie( mat )% MAT2MOVIE  Make a Matlab movie from an MxNxF matrix%% mv = mat2movie( mat )% number of framesF = size(mat,3);% plot and record imagesfor f=1:F,	% plot	imagesc(squeeze(mat(:,:,f)));	axis 'off';	axis 'square';	% record	if f==1,		mv = moviein(F);	end	mv(:,f) = getframe;endreturn
