@@ -149,8 +149,8 @@ end
     calRec.backgroundRGB = rgbBackground;
 
 
-    save(sprintf('rgbTable_%s',datestr(now)),'rgbTable');
-    save(sprintf('calRec_%s',datestr(now)),'calRec');
+    save(sprintf('rgbTable_%s',strrep(datestr(now),':','-')),'rgbTable');
+    save(sprintf('calRec_%s',strrep(datestr(now),':','-')),'calRec');
 end
 
 

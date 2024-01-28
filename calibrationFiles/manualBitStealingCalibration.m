@@ -111,7 +111,7 @@ calRec.lmaxminave=pbLookupScalar([pbMaxBITStealingIndex,1,bkgrndRGBnumber],LumSo
 fprintf('(calibration)$ saving raw uncorrected calibration file in curCalRecTmpFileRAW.mat\n');
 save(sprintf('curCalRecTmpFileRAW_%s',date), 'calRec');
 
-save(sprintf('lumData_%s',datestr(now)),'lumData')
+save(sprintf('lumData_%s',strrep(datestr(now),':','-')),'lumData')
 
 % haven't debugged this part
 if docheck==1 
