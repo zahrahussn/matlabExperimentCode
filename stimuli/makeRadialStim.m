@@ -1,13 +1,23 @@
-clearvars
+function makeRadialStim(radialHarmonics,radialAmplitudes,radialPhases)
+
 imageDims = [256 256]; % size of the bitmap image in pixels
 imageSize = [1.5 1.5]; % size of the image in degrees of visual angle
 baseRadius = 0.5; % radius of the zeroth harmonic (base radius of the circle) in degrees of visual angle
 
-radialHarmonics = [2 3 4]; % harmonic numbers
-radialAmplitudes = [0.1 0.1 0.2]*baseRadius; % amplitude of each harmonic (specified as a proportion of the base radius)
-radialPhases = [0 0 0]; % phase of each harmonic in radians
+if ~exist('radialHarmonics','var') || isempty(radialHarmonics)
+  radialHarmonics = [2 3 4]; % harmonic numbers
+end
+if ~exist('radialAmplitudes','var') || isempty(radialAmplitudesDeg)
+  radialAmplitudes = [10 10 20]; % amplitude of each harmonic as a precentage of the base radius
+end
+radialAmplitudesDeg = radialAmplitudes/100*baseRadius; % amplitude of each harmonic in degrees of visual angle
+if ~exist('radialPhases','var') || isempty(radialPhases)
+  radialPhases = [0 0 0]/180*pi; % phase of each harmonic in in degrees
+end
+radialPhasesRad = radialPhases/180*pi; % phase of each harmonic in radians
+
 nHarmonics = length(radialHarmonics);
-if length(radialAmplitudes)~=nHarmonics || length(radialPhases)~=nHarmonics
+if length(radialAmplitudesDeg)~=nHarmonics || length(radialPhasesRad)~=nHarmonics
   fprintf('Harmonic amplitues and phases must have the same number of elements\n')
   return;
 end
@@ -16,7 +26,7 @@ end
 % (see eq. 1 in Wilson & Wilkinson (2002))
 radius = @(phi) baseRadius;
 for iHarm = 1:nHarmonics
-  radius = @(phi) radius(phi) + radialAmplitudes(iHarm)*cos(radialHarmonics(iHarm)*phi + pi - radialPhases(iHarm)); % (added pi phase to replicate Wilson & Wilkinson (2002)'s Fig. 1)
+  radius = @(phi) radius(phi) + radialAmplitudesDeg(iHarm)*cos(radialHarmonics(iHarm)*phi + pi - radialPhasesRad(iHarm)); % (added pi phase to replicate Wilson & Wilkinson (2002)'s Fig. 1)
 end
 
 % % plot contour as line plot
@@ -38,16 +48,19 @@ for x = 1:imageDims(1)
     r = abs(complexCoords);
     phi = angle(complexCoords);
     % get contrast value at pixel using eq. 2 from Wilson & Wilkinson (2002)
-    pixelValue(x,y) = (1 - 4*(r-radius(phi)).^2/sigma^2 + 4/3*(r - radius(phi)).^4/sigma^4 ) * exp(-(r-radius(phi)).^2/sigma^2);
+    pixelValue(y,x) = (1 - 4*(r-radius(phi)).^2/sigma^2 + 4/3*(r - radius(phi)).^4/sigma^4 ) * exp(-(r-radius(phi)).^2/sigma^2);
   end
 end
 
 % display bitmap
-figure('name',sprintf('Harmonics = %s   A = %s   phi = %s',mat2str(radialHarmonics),mat2str(radialAmplitudes),mat2str(radialPhases)));
-imagesc(pixelValue',[-1 1]);
+figure('name',sprintf('Harmonics = %s   A = %s   phi = %s',mat2str(radialHarmonics),mat2str(radialAmplitudesDeg),mat2str(radialPhasesRad)));
+imagesc(pixelValue,[-1 1]);
 colormap('gray');
 set(gca,'YDir','normal');
 axis equal
 xlim([1 imageDims(1)]);
 ylim([1 imageDims(2)]);
 colorbar;
+
+% save bitmap
+imwrite(flipud((pixelValue+1)/2),sprintf('radialStim_H%s_A%s_P%s.png',sprintf('-%d',radialHarmonics),sprintf('-%d',radialAmplitudes),sprintf('-%d',radialPhases)));
