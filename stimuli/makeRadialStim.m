@@ -7,18 +7,18 @@ baseRadius = 0.5; % radius of the zeroth harmonic (base radius of the circle) in
 % harmonic numbers
 if ~exist('radialHarmonics','var') || isempty(radialHarmonics)
   radialHarmonics = [2 5]; % these defaults replicate the bottom right stimulus of Fig. 1 in Wilson & Wilkinson (2002)
-  radialHarmonics = [2 3 4];
+  radialHarmonics = [2 3 4]; % nice stylized butterfly
 end
 % amplitude of each harmonic as a precentage of the base radius
 if ~exist('radialAmplitudes','var') || isempty(radialAmplitudes)
   radialAmplitudes = [10 3]; % these defaults replicate the bottom right stimulus of Fig. 1 in Wilson & Wilkinson (2002)
-  radialAmplitudes = [10 10 20];
+  radialAmplitudes = [10 10 20]; % nice stylized butterfly
 end
 radialAmplitudesDeg = radialAmplitudes/100*baseRadius; % amplitude of each harmonic in degrees of visual angle
 % phase of each harmonic in in degrees
 if ~exist('radialPhases','var') || isempty(radialPhases)
-  radialPhases = [0 30]; % these defaults replicate the bottom right stimulus of Fig. 1 in Wilson & Wilkinson (2002)
-  radialPhases = [180 0 180];
+  radialPhases = [0 180+30]; % these defaults replicate the bottom right stimulus of Fig. 1 in Wilson & Wilkinson (2002) (the second harmonic component of all stimuli in this figure is always shifted by 180 degrees relative to the first component)
+  radialPhases = [180 180 180]; % nice stylized butterfly
 end
 radialPhasesRad = radialPhases/180*pi; % phase of each harmonic in radians
 if ~exist('writeBitmap','var') || isempty(writeBitmap)
@@ -35,8 +35,8 @@ end
 % (see eq. 1 in Wilson & Wilkinson (2002))
 radius = @(phi) baseRadius;
 for iHarm = 1:nHarmonics
-  radius = @(phi) radius(phi) + radialAmplitudesDeg(iHarm)*cos(radialHarmonics(iHarm)* (phi + pi/2) + radialPhasesRad(iHarm));
-  % (added pi/2 phase to replicate Wilson & Wilkinson (2002)'s convention that 0 phase corresponds to upper vertical)
+  radius = @(phi) radius(phi) + radialAmplitudesDeg(iHarm)*cos(radialHarmonics(iHarm)* (phi - pi/2) + radialPhasesRad(iHarm));
+  % (subtract pi/2 phase to replicate Wilson & Wilkinson (2002)'s convention that 0 phase corresponds to upper vertical)
 end
 
 % % plot contour as line plot
