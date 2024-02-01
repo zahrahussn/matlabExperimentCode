@@ -60,7 +60,7 @@ for x = 1:imageDims(1)
     % get contrast value at pixel using eq. 2 from Wilson & Wilkinson (2002)
     pixelValue(y,x) = (1 - 4*(r-radius(phi)).^2/sigma^2 + 4/3*(r - radius(phi)).^4/sigma^4 ) * exp(-(r-radius(phi)).^2/sigma^2);
     % (x coordinates correspond to matrix colums going from left to right and
-    %  y coordinates coorespond to matrix rows going from top to bottom)
+    %  y coordinates correspond to matrix rows going from top to bottom)
   end
 end
 
@@ -68,7 +68,7 @@ end
 figure('name',sprintf('Harmonics = %s   A = %s   phi = %s',mat2str(radialHarmonics),mat2str(radialAmplitudes),mat2str(radialPhases)));
 imagesc(pixelValue,[-1 1]);
 colormap('gray');
-set(gca,'YDir','normal'); % this will display the image
+set(gca,'YDir','normal'); % this will display the image with increasing matrix rows going from bottom to top
 axis equal
 xlim([1 imageDims(1)]);
 ylim([1 imageDims(2)]);
