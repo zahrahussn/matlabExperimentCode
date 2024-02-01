@@ -7,7 +7,7 @@ baseRadius = 0.5; % radius of the zeroth harmonic (base radius of the circle) in
 if ~exist('radialHarmonics','var') || isempty(radialHarmonics)
   radialHarmonics = [2 3 4]; % harmonic numbers
 end
-if ~exist('radialAmplitudes','var') || isempty(radialAmplitudesDeg)
+if ~exist('radialAmplitudes','var') || isempty(radialAmplitudes)
   radialAmplitudes = [10 10 20]; % amplitude of each harmonic as a precentage of the base radius
 end
 radialAmplitudesDeg = radialAmplitudes/100*baseRadius; % amplitude of each harmonic in degrees of visual angle
