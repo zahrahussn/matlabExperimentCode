@@ -1,4 +1,4 @@
-function makeRadialStim(radialHarmonics,radialAmplitudes,radialPhases, writeBitmap)
+function pixelValue=makeRadialStim(radialHarmonics,radialAmplitudes,radialPhases, writeBitmap)
 
 imageDims = [256 256]; % size of the bitmap image in pixels
 imageSize = [1.5 1.5]; % size of the image in degrees of visual angle
