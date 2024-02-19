@@ -1,5 +1,5 @@
 
-stim=makeRadialStim([2,3,4,5],[10,4,3,3],[0,0,30,180]);
+stim=makeRadialStim([3,5,10],[10,10,5],[0,20,0]);
 stim=flipud(stim);
 
 adj=0;

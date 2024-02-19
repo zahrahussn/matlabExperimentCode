@@ -1,5 +1,4 @@
-function pixelValue=makeRadialStim(radialHarmonics,radialAmplitudes,radialPhases, writeBitmap)
-
+function pixelValue=makeRadialStim(radialHarmonics,radialAmplitudes,radialPhases, writeBitmap, axisHandle)
 imageDims = [256 256]; % size of the bitmap image in pixels
 imageSize = [1.5 1.5]; % size of the image in degrees of visual angle
 baseRadius = 0.5; % radius of the zeroth harmonic (base radius of the circle) in degrees of visual angle
@@ -65,10 +64,13 @@ for x = 1:imageDims(1)
 end
 
 % display bitmap
-figure('name',sprintf('Harmonics = %s   A = %s   phi = %s',mat2str(radialHarmonics),mat2str(radialAmplitudes),mat2str(radialPhases)));
-imagesc(pixelValue,[-1 1]);
+if ~exist("axisHandle",'var')
+    figure('name',sprintf('Harmonics = %s   A = %s   phi = %s',mat2str(radialHarmonics),mat2str(radialAmplitudes),mat2str(radialPhases)));
+    axisHandle=axes;
+end
+imagesc(axisHandle,pixelValue,[-1 1]);
 colormap('gray');
-set(gca,'YDir','normal'); % this will display the image with increasing matrix rows going from bottom to top
+set(axisHandle,'YDir','normal'); % this will display the image with increasing matrix rows going from bottom to top
 axis equal
 xlim([1 imageDims(1)]);
 ylim([1 imageDims(2)]);
