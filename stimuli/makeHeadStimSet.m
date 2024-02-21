@@ -7,19 +7,19 @@ if stim==1
     A5 = [0];
 end
 if stim==2
-    A3 = [-30, 0, 30];
-    A4 = [50,100];
+    A3 = [0, 30, 60, 90];
+    A4 = [0];
     A5 = [0];
 end
 
 
-phiRots = 15;%[-24];
+phiRots = 0;%[-24];
 
 nA3 = length(A3);
 nA4 = length(A4);
 nA5 = length(A5);
 for phiRot = phiRots
-    figure('name',sprintf('phiRot = %+d', phiRot),'units','normalized','position',[0 .5*(abs(phiRot)==0) 1 .45]);
+    figure('name',sprintf('phiRot = %+d', phiRot),'units','normalized','position',[0 .5*(abs(phiRot)==0) 0.5 .45]);
     tiledlayout(nA4,nA3*nA5,'TileSpacing','compact')
     for i = 1:nA3
         for j = 1:nA4
@@ -31,8 +31,8 @@ for phiRot = phiRots
                         [0 0 180+phiRot 0+phiRot 180-0.15*phiRot 180 180],0,hAxes);
                 end
                 if stim==2
-                        makeRadialStim([2 3 4 5 10],[10 30*(100+A3(i))/100 20*(100+A4(j))/100 5*(100+A5(k))/100  7],...
-                            [180,180+phiRot,180+phiRot,phiRot,180],0,hAxes);
+                        makeRadialStim([2 3 4,5,6,8],[30 20*(100+A3(i))/100 30*(100+A4(j))/100 0 0 10],...
+                            [180,180+phiRot,180+phiRot,180,180, 180],0,hAxes);
                 end
 
                 if j == 1
