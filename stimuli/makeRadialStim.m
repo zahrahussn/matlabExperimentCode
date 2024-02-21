@@ -1,6 +1,6 @@
 function pixelValue=makeRadialStim(radialHarmonics,radialAmplitudes,radialPhases, writeBitmap, axisHandle)
 imageDims = [256 256]; % size of the bitmap image in pixels
-imageSize = [1.5 1.5]; % size of the image in degrees of visual angle
+imageSize = [1.75 1.75]; % size of the image in degrees of visual angle
 baseRadius = 0.5; % radius of the zeroth harmonic (base radius of the circle) in degrees of visual angle
 
 % harmonic numbers
@@ -38,12 +38,15 @@ for iHarm = 1:nHarmonics
   % (subtract pi/2 phase to replicate Wilson & Wilkinson (2002)'s convention that 0 phase corresponds to upper vertical)
 end
 
-% % plot contour as line plot
+% plot contour as line plot
 % nPoints = 100;
 % phi = linspace(-pi,pi,nPoints);
 % complexCoords = radius(phi).*exp(1i*phi);
-% figure('name',sprintf('Harmonics = %s   A = %s   phi = %s',mat2str(radialHarmonics),mat2str(radialAmplitudes),mat2str(radialPhases)));
-% plot(real(complexCoords),imag(complexCoords),'k','lineWidth',10);
+% if ~exist("axisHandle",'var')
+%     figure('name',sprintf('Harmonics = %s   A = %s   phi = %s',mat2str(radialHarmonics),mat2str(radialAmplitudes),mat2str(radialPhases)));
+%     axisHandle=axes;
+% end
+% plot(axisHandle,real(complexCoords),imag(complexCoords),'k','lineWidth',4);
 % axis equal
 % xlim([-1 1]*imageSize(1)/2);
 % ylim([-1 1]*imageSize(2)/2);

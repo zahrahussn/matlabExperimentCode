@@ -7,13 +7,12 @@ if stim==1
     A5 = [0];
 end
 if stim==2
-    A3 = [0, 30, 60, 90];
-    A4 = [0];
+    A3 = [-40,-20,0, 20,40];
+    A4 = [-20,20];
     A5 = [0];
 end
 
-
-phiRots = 0;%[-24];
+phiRots = 10;%[-24];
 
 nA3 = length(A3);
 nA4 = length(A4);
@@ -31,8 +30,17 @@ for phiRot = phiRots
                         [0 0 180+phiRot 0+phiRot 180-0.15*phiRot 180 180],0,hAxes);
                 end
                 if stim==2
-                        makeRadialStim([2 3 4,5,6,8],[30 20*(100+A3(i))/100 30*(100+A4(j))/100 0 0 10],...
-                            [180,180+phiRot,180+phiRot,180,180, 180],0,hAxes);
+
+% tried in office feb 21
+%                         makeRadialStim([2 3 4,5,6,8],[30 20*(100+A3(i))/100 30*(100+A4(j))/100 0 0 10],...
+%                             [180,180+phiRot,180+phiRot,180,180, 180],0,hAxes);
+                        makeRadialStim([1 2 3 4 19],[30 40 38*(100+A3(i))/100 44*(100+A4(j))/100 3],...
+                            [180,180,180+phiRot,180+phiRot,0],0,hAxes);
+%                         makeRadialStim([1,2,3,4,15],[30,40,30, 50,3],...
+%                              [0,180,180,180,0],0,hAxes);
+%                         makeRadialStim([3,5,4,7],[50,10,10,10],...
+%                              [180,180,180,180],0,hAxes);
+
                 end
 
                 if j == 1
