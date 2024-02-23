@@ -24,10 +24,10 @@ if ~exist('writeBitmap','var') || isempty(writeBitmap)
   writeBitmap = false; % do not write out bitmap image by default
 end
 if ~exist('contourStyle','var') || isempty(contourStyle)
-  contourStyle = 'bandpass'; % style of the contour, either 'bandpass' (as in Wilkinson & Wilson, 2002) or 'raisedCosine' (a smooth black line)
+  contourStyle = 'raisedCosine'; % style of the contour, either 'bandpass' (as in Wilkinson & Wilson, 2002) or 'raisedCosine' (a smooth black line)
 end
 if ~exist('texture','var') || isempty(texture)
-  texture = false; % whether to add a texture within the contour
+  texture = true; % whether to add a texture within the contour
 end
 
 nHarmonics = length(radialHarmonics);
@@ -59,7 +59,7 @@ end
 
 % make bitmap image
 imageCenter = imageDims/2+0.5;
-sigma = 0.056; % bandpass space constant in degrees of visual angle (see eq. 2 in Wilson & Wilkinson (2002))
+sigma = 0.056/2; % bandpass space constant in degrees of visual angle (see eq. 2 in Wilson & Wilkinson (2002))
 beta = 0.5; % beta parameter for raised cosine (0 = cosine, 1 = square) (for raised cosines, sigma is the width parameter)
 pixelValue = zeros(imageDims);
 mask = zeros(imageDims);

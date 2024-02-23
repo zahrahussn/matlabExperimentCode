@@ -14,7 +14,7 @@ bandlimited_noise = ifft2(fftshift(randn(height, width)) .* (radius <= cutoff_fr
 bandlimited_noise = real(bandlimited_noise);
 
 % Create bilaterally symmetric noise patch
-symmetric_noise = (bandlimited_noise + flipud(bandlimited_noise)) / 2;
+symmetric_noise = (bandlimited_noise + fliplr(bandlimited_noise)) / 2;
 
 % Display the original and symmetric noise patches
 figure;
