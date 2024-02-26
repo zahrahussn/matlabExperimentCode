@@ -4,8 +4,8 @@
 % stim=flipud(stim);
 
 % butterflies
-stim=makeRadialStim([2,3,4,5,10],[10,30,20,5,7],[180,180+10,180+10,10,180]);
-stim=flipud(stim);
+% stim=makeRadialStim([2,3,4,5,10],[10,30,20,5,7],[180,180+10,180+10,10,180]);
+% stim=flipud(stim);
 
 % heads
 % i = -40; % A3
