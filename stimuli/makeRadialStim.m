@@ -24,10 +24,10 @@ if ~exist('writeBitmap','var') || isempty(writeBitmap)
   writeBitmap = false; % do not write out bitmap image by default
 end
 if ~exist('contourStyle','var') || isempty(contourStyle)
-  contourStyle = 'raisedCosine'; % style of the contour, either 'bandpass' (as in Wilkinson & Wilson, 2002) or 'raisedCosine' (a smooth black line)
+  contourStyle = 'bandpass'; % style of the contour, either 'bandpass' (as in Wilkinson & Wilson, 2002) or 'raisedCosine' (a smooth black line)
 end
 if ~exist('texture','var') || isempty(texture)
-  texture = true; % whether to add a texture within the contour
+  texture = false; % whether to add a texture within the contour
 end
 
 nHarmonics = length(radialHarmonics);

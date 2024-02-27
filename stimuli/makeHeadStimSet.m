@@ -12,7 +12,7 @@ if stim==2
     A5 = [0];
 end
 
-phiRots = 0;%[-24];
+phiRots = 10;%[-24];
 
 nA3 = length(A3);
 nA4 = length(A4);
