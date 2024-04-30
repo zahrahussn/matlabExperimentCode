@@ -3,12 +3,19 @@
 % Motion discrimination is assumed to be between up (90) and down (270)
 % logistic function is fitted to an down/up motion response function spanning the two opposite direction
 
-function [thresholdUp,thresholdDown,fit] = motionPsymetLogistic(fileName)
+function [thresholdUp,thresholdDown,fit] = motionPsymetLogistic(fileName,fitBias,fitLapse)
 
 if ~exist('fileName','var') || isempty(fileName)
   fileName = "aa_pilot1_baseline.csv";
 end
-thresholdPerf = 0.99;
+if ~exist('fitBias','var') || isempty(fitBias)
+  fitBias = false; % assume that there is no bias
+end
+if ~exist('fitLapse','var') || isempty(fitLapse)
+  fitLapse = true; % assume that there is no bias
+end
+
+thresholdPerf = 0.9;
 
 dat = readtable(fileName);
 trials = [dat.coherence dat.accuracy dat.direction];
@@ -31,17 +38,22 @@ invLogistic = @(y,p) (-p(1) - log(1./y - 1))/p(2);
 % p(2)*x = -p(1) - log(1./y - 1)
 % x = (-p(1) - log(1./y - 1))/p(2)
 
-% fit psychometric curve using maximum likelihood (did this by trial and error from fitpsymet.m, so would need to be double-checked)
-fiterr = @(p) -sum(log( scaledLogistic( trials(trials(:,2)==1,1), p ) )) -sum(log(1 - scaledLogistic( trials(trials(:,2)==0,1), p) ));
-fiterr = @(p) -sum(log( scaledLogistic( trials(trials(:,2)==1,1), p )/(1-p(3)) )) -sum(log(1 - scaledLogistic( trials(trials(:,2)==0,1), p)/(1-p(3)) ));
-fiterr = @(p) -sum(log( 0.5 + 0.5/(1-p(3))*scaledLogistic( trials(trials(:,2)==1,1), p ) )) -sum(log(0.5 - 0.5/(1-p(3))*scaledLogistic( trials(trials(:,2)==0,1), p)));
-fiterr = @(p) -sum(log( 0.5 + 0.5*scaledLogistic( trials(trials(:,2)==1,1), p ) )) -sum(log(0.5 - 0.5*scaledLogistic( trials(trials(:,2)==0,1), p)));
+% fit psychometric curve using maximum likelihood
+fiterr = @(p) -sum(log( scaledLogistic( trials(trials(:,2)==1,1), p ) )) -sum(log(1 - scaledLogistic( trials(trials(:,2)==0,1), p)));
 
 opt=optimset('Display','off', 'TolX',0.0001,'TolFun',0.000001, 'MaxFunEvals',1000);
-lowerbound = [-inf -inf 0];
-upperbound = [inf inf 1];
 
-init = [ mean(trials(:,1)), 5, 0];
+lowerbound = [0 -inf 0];
+upperbound = [0 inf 0];
+if fitBias
+  lowerbound(1) = -1;
+  upperbound(1) = 1;
+end
+if fitLapse
+  upperbound(3) = 1;
+end
+
+init = [ mean(trials(:,1).*(trials(:,2)))*5, 5, 0]; % some  empirical initial values
 fit = fminsearchbnd(fiterr, init, lowerbound, upperbound, opt);
 
 % calculate threshold
