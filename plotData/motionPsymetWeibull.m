@@ -1,4 +1,13 @@
-fileName = "aa_pilot1_baseline.csv";
+% fits Weibull psychometric function to motion direction discrimination data
+% obtained using Motion/BaselineTask.py, and returns threshold at given performance (e.g. 99%)
+% Motion discrimination is assumed to be between up (90) and down (270)
+% Up/down are fitted together (averaged) or separately
+
+function [threshold3,threshold,fit3,fit] = motionPsymetWeibull(fileName)
+
+if ~exist('fileName','var') || isempty(fileName)
+  fileName = "aa_pilot1_baseline.csv";
+end
 thresholdPerf = 0.99;
 
 dat = readtable(fileName);
@@ -7,6 +16,8 @@ trials = [dat.coherence dat.accuracy dat.direction];
 scaledWeibull3params = @(x,p) (0.5 - p(3)) * weibullcdf(x,p(1),p(2));
 
 % data for both directions together
+
+% fit psychometric curve using maximum likelihood (?)
 fiterr3 = @(p) -sum(log( 0.5 + scaledWeibull3params( trials(trials(:,2)==1,1), p ) )) -sum(log( 0.5 - scaledWeibull3params( trials(trials(:,2)==0,1), p) ));
 
 opt=optimset('Display','off', 'TolX',0.0001,'TolFun',0.000001, 'MaxFunEvals',1000);
