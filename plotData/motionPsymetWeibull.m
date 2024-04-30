@@ -45,6 +45,9 @@ plot(threshold3*ones(2,1),[0 thresholdPerfFit3],'g--');
 
 text(threshold3,thresholdPerfFit3-.03,sprintf('%.3f',threshold3),'color','g');
 
+ylabel('Accuracy');
+xlabel('Coherence');
+
 
 % data for each direction separately
 hAxis = subplot(1,2,2);
@@ -84,3 +87,6 @@ for direction = [90 270]
 end
 
 legend(h,{'up','down'},'location','SouthEast')
+ylabel('Accuracy');
+xlabel('Coherence');
+
