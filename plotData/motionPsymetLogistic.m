@@ -94,3 +94,6 @@ plot(thresholdDown*ones(2,1),[-0.05 thresholdDownPerfFit],'g--');
 text(thresholdDown,thresholdDownPerfFit+.04,sprintf('%.3f',thresholdDown),'HorizontalAlignment','right','FontSize',16);
 
 legend(h(1,:),{'up','down'},'location','SouthEast')
+
+ylabel('Probability of choosing ''Up''');
+xlabel('Coherence');
