@@ -1,5 +1,6 @@
-% fits logistic psychometric function to motion direction discrimination data
-% obtained using Motion/BaselineTask.py, and returns threshold at given performance (e.g. 99%)
+% fits logistic psychometric function to motion direction discrimination data obtained using
+% Motion/BaselineTask.py, AdatationTask.py or ImageryTask.py, and returns threshold at given performance (e.g. 99%)
+% (see: Winawer et al., 2010, A motion aftereffect from visual imagery of motion)
 % Motion discrimination is assumed to be between up (90) and down (270)
 % logistic function is fitted to an down/up motion response function spanning the two opposite direction
 
@@ -39,7 +40,9 @@ invLogistic = @(y,p) (-p(1) - log(1./y - 1))/p(2);
 % x = (-p(1) - log(1./y - 1))/p(2)
 
 % fit psychometric curve using maximum likelihood
-fiterr = @(p) -sum(log( scaledLogistic( trials(trials(:,2)==1,1), p ) )) -sum(log(1 - scaledLogistic( trials(trials(:,2)==0,1), p)));
+upResponseTrials = trials(:,2)==1;
+downResponseTrials = trials(:,2)==0;
+fiterr = @(p) -sum(log( scaledLogistic( trials(upResponseTrials,1), p ) )) -sum(log(1 - scaledLogistic( trials(downResponseTrials,1), p)));
 
 opt=optimset('Display','off', 'TolX',0.0001,'TolFun',0.000001, 'MaxFunEvals',1000);
 
@@ -106,6 +109,15 @@ plot(thresholdDown*ones(2,1),[-0.05 thresholdDownPerfFit],'g--');
 text(thresholdDown,thresholdDownPerfFit+.04,sprintf('%.3f',thresholdDown),'HorizontalAlignment','right','FontSize',16);
 
 legend(h(1,:),{'up','down'},'location','SouthEast')
+
+titleString = sprintf('slope = %.1f',fit(2));
+if fitLapse
+  titleString = sprintf('%s, lapse = %.2f',titleString, fit(3)/2);
+end
+if fitBias
+  titleString = sprintf('bias = %.2f, %s',fit(1), titleString);
+end
+title(titleString);
 
 ylabel('Probability of choosing ''Up''');
 xlabel('Coherence');
