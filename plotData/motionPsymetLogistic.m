@@ -48,8 +48,8 @@ probUpResponse = trials.accuracy; % convert accuracy to probability of respondin
 probUpResponse(dotDirection==270) = 1-probUpResponse(dotDirection==270);
 
 %transform adaptation direction data
-adaptDirection(adaptDirection==90) = 1; % 1 for up
-adaptDirection(adaptDirection==270) = -1; % and -1 for down (and 0 otherwise)
+adaptDirection(adaptDirection==270) = 1; % 1 for up (grating direction is coded opposite dot motion direction in the Psychopy script)
+adaptDirection(adaptDirection==90) = -1; % and -1 for down (and 0 otherwise)
 
 
 % logistic function with an additional parameter for the asymptote (lapse rate)
