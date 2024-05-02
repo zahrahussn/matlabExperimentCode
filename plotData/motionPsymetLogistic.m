@@ -11,13 +11,16 @@ function [fit, thresholdUp,thresholdDown] = motionPsymetLogistic(fileName,fitBia
 if ~exist('fileName','var') || isempty(fileName)
   fileName = "aa_pilot1_baseline.csv";
 end
-if ~exist('fitBias','var') || isempty(fitBias)
-  fitBias = false; % assume that there is no bias
-end
 
 thresholdPerf = 0.9;
 
-dat = readtable(fileName);
+try
+  dat = readtable(fileName);
+catch
+  fprintf('\nCannot find file %s in folder %s\n\n',fileName, pwd);
+  return;
+end
+
 fitAdaptation = true;
 if ismember('adapt_direction',dat.Properties.VariableNames)
   trials = [dat.coherence dat.accuracy dat.dot_direction  dat.adapt_direction];
@@ -29,6 +32,9 @@ else
   fitAdaptation = false;
 end
 
+if ~exist('fitBias','var') || isempty(fitBias)
+  fitBias = fitAdaptation; % by default, only fit the global bias for adaptation data (not for baseline)
+end
 if ~exist('fitLapse','var') || isempty(fitLapse)
   fitLapse = ~fitAdaptation; % by default do not fit the lapse parameter for (individual) adaptation data (as in Winawer et al., 2010)
 end
@@ -136,7 +142,7 @@ for iAdapt = 1:length(adaptDirs)
   end
 
   % plot model
-  plot(x,scaledLogistic(x,fit,adaptDirs(iAdapt)),'g','lineWidth',2);
+  plot(x,scaledLogistic(x,fit,adaptDirs(iAdapt)),['g' styles(iAdapt)],'lineWidth',2);
 
 end
 
