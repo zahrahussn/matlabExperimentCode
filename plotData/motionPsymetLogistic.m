@@ -15,20 +15,22 @@ end
 thresholdPerf = 0.9;
 
 try
-  dat = readtable(fileName);
+  trials = readtable(fileName);
 catch
   fprintf('\nCannot find file %s in folder %s\n\n',fileName, pwd);
   return;
 end
 
 fitAdaptation = true;
-if ismember('adapt_direction',dat.Properties.VariableNames)
-  trials = [dat.coherence dat.accuracy dat.dot_direction  dat.adapt_direction];
-elseif ismember('imagery_direction',dat.Properties.VariableNames)
-  trials = [dat.coherence dat.accuracy dat.dot_direction  dat.imagery_direction];
+if ismember('adapt_direction',trials.Properties.VariableNames)
+  dotDirection = trials.dot_direction;
+  adaptDirection = trials.adapt_direction;
+elseif ismember('imagery_direction',trials.Properties.VariableNames)
+  dotDirection = trials.dot_direction;
+  adaptDirection = trials.imagery_direction;
 else
-  trials = [dat.coherence dat.accuracy dat.direction];
-  trials(:,4) = 0; % no adaptation
+  dotDirection = trials.direction;
+  adaptDirection = zeros(size(dotDirection)); % no adaptation
   fitAdaptation = false;
 end
 
@@ -40,12 +42,14 @@ if ~exist('fitLapse','var') || isempty(fitLapse)
 end
 
 % make a motion response function spanning the two opposite directions
-trials(trials(:,3)==270,1) = -trials(trials(:,3)==270,1); % coherence for "down" trials is negative 
-trials(trials(:,3)==270,2) = 1-trials(trials(:,3)==270,2); % convert accuracy to probability of responding "up"
+signedCoherence = trials.coherence;
+signedCoherence(dotDirection==270) = -signedCoherence(dotDirection==270); % coherence for "down" trials is negative
+probUpResponse = trials.accuracy; % convert accuracy to probability of responding "up"
+probUpResponse(dotDirection==270) = 1-probUpResponse(dotDirection==270);
 
 %transform adaptation direction data
-trials(trials(:,4)==90,4) = 1; % 1 for up
-trials(trials(:,4)==270,4) = -1; % and -1 for down (and 0 otherwise)
+adaptDirection(adaptDirection==90) = 1; % 1 for up
+adaptDirection(adaptDirection==270) = -1; % and -1 for down (and 0 otherwise)
 
 
 % logistic function with an additional parameter for the asymptote (lapse rate)
@@ -79,9 +83,9 @@ invLogistic = @(y,p,A) (-p(1) + p(4)*A - log(1./y - 1))/p(2);
 % x = (-p(1) + p(4)*A - log(1./y - 1))/p(2)
 
 % Fit psychometric curve using maximum likelihood
-upResponseTrials = trials(:,2)==1;
-downResponseTrials = trials(:,2)==0;
-fiterr = @(p) -sum(log( scaledLogistic( trials(upResponseTrials,1), p, trials(upResponseTrials,4)) )) -sum(log(1 - scaledLogistic( trials(downResponseTrials,1), p, trials(downResponseTrials,4))));
+upResponseTrials = probUpResponse==1;
+downResponseTrials = probUpResponse==0;
+fiterr = @(p) -sum(log( scaledLogistic( signedCoherence(upResponseTrials), p, adaptDirection(upResponseTrials)) )) -sum(log(1 - scaledLogistic( signedCoherence(downResponseTrials), p, adaptDirection(downResponseTrials))));
 
 opt=optimset('Display','off', 'TolX',0.0001,'TolFun',0.000001, 'MaxFunEvals',1000);
 
@@ -99,7 +103,7 @@ if fitAdaptation
   upperbound(4) = inf;
 end
 
-init = [ mean(trials(:,1).*(trials(:,2)))*5, 5, 0, 0]; % some  empirical initial values
+init = [ mean(signedCoherence.*(probUpResponse))*5, 5, 0, 0]; % some  empirical initial values
 fit = fminsearchbnd(fiterr, init, lowerbound, upperbound, opt);
 
 % Plot empirical and fitted psychometric functions
@@ -121,7 +125,7 @@ plot(zeros(2,1),[0; 1],'k:')
 hAxis.YLim = [-0.05 1.05];
 hold on;
 c = 0;
-adaptDirs = unique(trials(:,4));
+adaptDirs = unique(adaptDirection);
 markers = 'ox';
 styles = '-:';
 for iAdapt = 1:length(adaptDirs)
@@ -134,9 +138,9 @@ for iAdapt = 1:length(adaptDirs)
       case 270
         colour = 'b';
     end
-  
-    thisTrials = trials(trials(:,3) == direction & trials(:,4) == adaptDirs(iAdapt) ,:);
-    empPsyMet = emppsymet(thisTrials);
+    
+    whichTrials = dotDirection == direction & adaptDirection == adaptDirs(iAdapt);
+    empPsyMet = emppsymet([signedCoherence(whichTrials) probUpResponse(whichTrials)]);
     h(:,c) = errorbar(empPsyMet(:,1),empPsyMet(:,2),empPsyMet(:,4),[colour markers(iAdapt) styles(iAdapt)]);
 
   end
