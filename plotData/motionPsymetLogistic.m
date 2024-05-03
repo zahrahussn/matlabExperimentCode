@@ -25,9 +25,16 @@ fitAdaptation = true;
 if ismember('adapt_direction',trials.Properties.VariableNames)
   dotDirection = trials.dot_direction;
   adaptDirection = trials.adapt_direction;
+  %transform adaptation direction data
+  adaptDirection(adaptDirection==270) = 1; % 1 for up (grating direction is coded opposite dot motion direction in the Psychopy script)
+  adaptDirection(adaptDirection==90) = -1; % and -1 for down (and 0 otherwise)
+  imageryCondition = 'Adaptation';
 elseif ismember('imagery_direction',trials.Properties.VariableNames)
   dotDirection = trials.dot_direction;
-  adaptDirection = trials.imagery_direction;
+  %transform adaptation direction data
+  adaptDirection = ones(size(dotDirection)); % 1 for up
+  adaptDirection(ismember(trials.imagery_direction,'down')) = -1; % -1 for down
+  imageryCondition = 'Imagery';
 else
   dotDirection = trials.direction;
   adaptDirection = zeros(size(dotDirection)); % no adaptation
@@ -46,11 +53,6 @@ signedCoherence = trials.coherence;
 signedCoherence(dotDirection==270) = -signedCoherence(dotDirection==270); % coherence for "down" trials is negative
 probUpResponse = trials.accuracy; % convert accuracy to probability of responding "up"
 probUpResponse(dotDirection==270) = 1-probUpResponse(dotDirection==270);
-
-%transform adaptation direction data
-adaptDirection(adaptDirection==270) = 1; % 1 for up (grating direction is coded opposite dot motion direction in the Psychopy script)
-adaptDirection(adaptDirection==90) = -1; % and -1 for down (and 0 otherwise)
-
 
 % logistic function with an additional parameter for the asymptote (lapse rate)
 scaledLogistic = @(x,p) p(3)/2 +  (1-p(3)) * 1./(1+exp(-(p(1) + p(2)*x)));
@@ -124,29 +126,21 @@ plot(zeros(2,1),[0; 1],'k:')
 % plot data for each dot direction/adaptation direction in different colors/styles
 hAxis.YLim = [-0.05 1.05];
 hold on;
-c = 0;
 adaptDirs = unique(adaptDirection);
 markers = 'ox';
 styles = '-:';
+colours = 'rb';
 for iAdapt = 1:length(adaptDirs)
   for direction = [90 270]
-    c=c+1;
   
-    switch(direction)
-      case 90
-        colour = 'r';
-      case 270
-        colour = 'b';
-    end
-    
     whichTrials = dotDirection == direction & adaptDirection == adaptDirs(iAdapt);
     empPsyMet = emppsymet([signedCoherence(whichTrials) probUpResponse(whichTrials)]);
-    h(:,c) = errorbar(empPsyMet(:,1),empPsyMet(:,2),empPsyMet(:,4),[colour markers(iAdapt) styles(iAdapt)]);
+    errorbar(empPsyMet(:,1),empPsyMet(:,2),empPsyMet(:,4),[colours(iAdapt) markers(iAdapt) styles(iAdapt)]);
 
   end
 
   % plot model
-  plot(x,scaledLogistic(x,fit,adaptDirs(iAdapt)),['g' styles(iAdapt)],'lineWidth',2);
+  h(iAdapt) = plot(x,scaledLogistic(x,fit,adaptDirs(iAdapt)),[colours(iAdapt) styles(iAdapt)],'lineWidth',2);
 
 end
 
@@ -171,9 +165,7 @@ else
 end
 
 if fitAdaptation
-  legend(h(1,:),{'up - adapt up','down - adapt up','up - adapt down','down - adapt down'},'location','SouthEast')
-else
-  legend(h(1,:),{'up','down'},'location','SouthEast')
+  legend(h,{[imageryCondition ' up'],[imageryCondition ' down']},'location','SouthEast')
 end
 
 titleString = sprintf('Slope \\beta = %.1f',fit(2));
@@ -184,7 +176,7 @@ if fitBias
   titleString = sprintf('Bias \\alpha = %.2f, %s',fit(1), titleString);
 end
 if fitAdaptation
-  titleString = sprintf('%s, Adaptation bias \\gamma = %.2f',titleString, fit(4));
+  titleString = sprintf('%s, %s bias \\gamma = %.2f',titleString, imageryCondition, fit(4));
 end
 title(titleString,'interpreter','tex');
 
