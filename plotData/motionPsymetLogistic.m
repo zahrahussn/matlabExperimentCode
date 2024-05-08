@@ -26,8 +26,8 @@ if ismember('adapt_direction',trials.Properties.VariableNames)
   dotDirection = trials.dot_direction;
   adaptDirection = trials.adapt_direction;
   %transform adaptation direction data
-  adaptDirection(adaptDirection==270) = 1; % 1 for up (grating direction is coded opposite dot motion direction in the Psychopy script)
-  adaptDirection(adaptDirection==90) = -1; % and -1 for down (and 0 otherwise)
+  adaptDirection(adaptDirection==90) = 1; % 1 for up
+  adaptDirection(adaptDirection==270) = -1; % and -1 for down (and 0 otherwise)
   imageryCondition = 'Adaptation';
 elseif ismember('imagery_direction',trials.Properties.VariableNames)
   dotDirection = trials.dot_direction;
