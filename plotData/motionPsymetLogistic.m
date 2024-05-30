@@ -140,8 +140,8 @@ for iFile = 1:nFiles
   lowerbound = [0 -inf 0 0];
   upperbound = [0 inf 0 0];
   if thisFitBias
-    lowerbound(1) = -1;
-    upperbound(1) = 1;
+    lowerbound(1) = -inf;
+    upperbound(1) = inf;
   end
   if thisFitLapse
     upperbound(3) = 1;
