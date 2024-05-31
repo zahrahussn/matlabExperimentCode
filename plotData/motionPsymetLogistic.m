@@ -222,7 +222,7 @@ for iFile = 1:nFiles
   
   if plotFigure
     if fitAdaptation
-      legend(h,{[imageryCondition ' up'],[imageryCondition ' down']},'location','SouthEast')
+      legend(h,{[imageryCondition ' down'],[imageryCondition ' up']},'location','SouthEast')
     end
     
     titleString = sprintf('Slope \\beta = %.1f',beta_slope(cFile));
