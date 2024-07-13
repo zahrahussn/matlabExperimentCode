@@ -1,0 +1,322 @@
+# Created by Octave 6.4.0, Tue Feb 20 16:37:57 2024 EST <labuser@vpixx>
+# name: calRec
+# type: scalar struct
+# ndims: 2
+ 1 1
+# length: 23
+# name: theDate
+# type: sq_string
+# elements: 1
+# length: 20
+20-Feb-2024 16:06:38
+
+
+# name: today
+# type: sq_string
+# elements: 1
+# length: 11
+20-Feb-2024
+
+
+# name: curTime
+# type: sq_string
+# elements: 1
+# length: 8
+16:06:38
+
+
+# name: displayName
+# type: sq_string
+# elements: 1
+# length: 9
+vpixx428G
+
+
+# name: fname
+# type: sq_string
+# elements: 1
+# length: 41
+vpixx428G_calibration_20240220T160648.mat
+
+
+# name: csvfname
+# type: sq_string
+# elements: 1
+# length: 41
+vpixx428G_calibration_20240220T160648.csv
+
+
+# name: computer
+# type: scalar struct
+# ndims: 2
+ 1 1
+# length: 12
+# name: macintosh
+# type: scalar
+0
+
+
+# name: windows
+# type: scalar
+0
+
+
+# name: osx
+# type: scalar
+0
+
+
+# name: linux
+# type: scalar
+1
+
+
+# name: kern
+# type: scalar struct
+# ndims: 2
+ 1 1
+# length: 5
+# name: ostype
+# type: sq_string
+# elements: 1
+# length: 5
+Linux
+
+
+# name: osrelease
+# type: sq_string
+# elements: 1
+# length: 17
+5.15.0-94-generic
+
+
+# name: osrevision
+# type: scalar
+0
+
+
+# name: version
+# type: sq_string
+# elements: 1
+# length: 83
+Linux Kernel Version 5.15.0-94-generic: #104-Ubuntu SMP Tue Jan 9 15:25:40 UTC 2024
+
+
+# name: hostname
+# type: sq_string
+# elements: 1
+# length: 5
+vpixx
+
+
+
+
+# name: hw
+# type: scalar struct
+# ndims: 2
+ 1 1
+# length: 7
+# name: machine
+# type: sq_string
+# elements: 1
+# length: 6
+x86_64
+
+
+# name: model
+# type: sq_string
+# elements: 0
+
+
+# name: ncpu
+# type: scalar
+16
+
+
+# name: physmem
+# type: scalar
+16582754304
+
+
+# name: usermem
+# type: scalar
+9504796672
+
+
+# name: busfreq
+# type: scalar
+0
+
+
+# name: cpufreq
+# type: scalar
+0
+
+
+
+
+# name: system
+# type: sq_string
+# elements: 1
+# length: 23
+Linux 5.15.0-94-generic
+
+
+# name: machineName
+# type: sq_string
+# elements: 1
+# length: 5
+vpixx
+
+
+# name: localHostName
+# type: sq_string
+# elements: 1
+# length: 5
+vpixx
+
+
+# name: MACAddress
+# type: sq_string
+# elements: 1
+# length: 17
+00:00:00:00:00:00
+
+
+# name: gstreamer
+# type: scalar
+10000
+
+
+# name: supported
+# type: sq_string
+# elements: 1
+# length: 34
+Linux 5.15.0-94-generic Supported.
+
+
+
+
+# name: gcard
+# type: sq_string
+# elements: 1
+# length: 122
+03:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Navi 23 [Radeon RX 6600/6600 XT/6600M] (rev c1)
+
+
+
+# name: nr
+# type: scalar
+256
+
+
+# name: wsize
+# type: matrix
+# rows: 1
+# columns: 2
+ 1920 1080
+
+
+# name: sCM
+# type: matrix
+# rows: 1
+# columns: 2
+ 50.799999999999997 28.5
+
+
+# name: PixelsPerCm
+# type: scalar
+38
+
+
+# name: CRT_FRAMERATE
+# type: scalar
+120
+
+
+# name: method
+# type: scalar
+5
+
+
+# name: mode
+# type: sq_string
+# elements: 1
+# length: 34
+EnableDataPixxM16OutputWithOverlay
+
+
+# name: calMatrix
+# type: matrix
+# rows: 22
+# columns: 2
+ 0.40000000000000002 30.920000000000002
+ 1 109.59999999999999
+ 0 0.22570000000000001
+ 0.80000000000000004 85.629999999999995
+ 0.90000000000000002 99.959999999999994
+ 0.69999999999999996 71.010000000000005
+ 0.40000000000000002 30.850000000000001
+ 0.20000000000000001 9.6630000000000003
+ 0.30000000000000004 19.600000000000001
+ 0.90000000000000002 99.909999999999997
+ 0.5 43.579999999999998
+ 0.5 43.619999999999997
+ 0.80000000000000004 85.689999999999998
+ 0.30000000000000004 19.52
+ 0.59999999999999998 57.25
+ 0.69999999999999996 70.950000000000003
+ 0.10000000000000001 2.9209999999999998
+ 0.59999999999999998 57.159999999999997
+ 0.10000000000000001 2.9089999999999998
+ 0.20000000000000001 9.5869999999999997
+ 1 109.5
+ 0 0.21540000000000001
+
+
+# name: gammaFit
+# type: scalar
+1.3282183185618712
+
+
+# name: lumRange
+# type: matrix
+# rows: 1
+# columns: 3
+ 0.22055000000000002 55.679213949950054 111.1378778999001
+
+
+# name: geomTestLength
+# type: scalar
+6.9000000000000004
+
+
+# name: geomTestResolution
+# type: scalar
+37.10144927536232
+
+
+# name: PR655config
+# type: sq_string
+# elements: 1
+# length: 38
+00000,0,-1,-1,-1,0,1,0,3,1,2,0,60.00
+
+
+
+# name: fillColor
+# type: matrix
+# rows: 1
+# columns: 22
+ 0.40000000000000002 1 0 0.80000000000000004 0.90000000000000002 0.69999999999999996 0.40000000000000002 0.20000000000000001 0.30000000000000004 0.90000000000000002 0.5 0.5 0.80000000000000004 0.30000000000000004 0.59999999999999998 0.69999999999999996 0.10000000000000001 0.59999999999999998 0.10000000000000001 0.20000000000000001 1 0
+
+
+# name: luminance
+# type: matrix
+# rows: 1
+# columns: 22
+ 30.920000000000002 109.59999999999999 0.22570000000000001 85.629999999999995 99.959999999999994 71.010000000000005 30.850000000000001 9.6630000000000003 19.600000000000001 99.909999999999997 43.579999999999998 43.619999999999997 85.689999999999998 19.52 57.25 70.950000000000003 2.9209999999999998 57.159999999999997 2.9089999999999998 9.5869999999999997 109.5 0.21540000000000001
+
+
+
+
