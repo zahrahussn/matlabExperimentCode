@@ -40,7 +40,7 @@ defarg('detectMATfolder','detectMultMATfiles');		% N.B. make sure this folder ex
 disp('setting path names...');
 mfilename='detectMultObs2IFC'; mainfile = [mfilename,'.m'];
 eval(['mainpath=which(',QuoteString(mainfile),');']);
-mainpath=strrep(mainpath,'experimentCode', 'data'); % modified sept 10, 2018 for github rearrangement
+mainpath=strrep(mainpath,'matlabExperimentCode', 'matlabData'); % modified sept 10, 2018 for github rearrangement
 mainpath = mainpath(1:end-2);
 textdatadir=[mainpath,'/',detectTEXTfolder];
 matdatadir=[mainpath,'/',detectMATfolder];
@@ -242,13 +242,19 @@ data=zeros(1,11); %
 kb = GetKeyboardIndices; % list of keyboard indices
 responseKeyboard=max(kb); % my guess of which one we'll be using
 
-escapeKey = KbName('escape');
+escapeKey = KbName('Escape');
 if ismac
    interval1Key = KbName('LeftArrow');
    interval2Key = KbName('RightArrow');
 else
-    interval1Key = KbName('KP_End'); % Make sure to use this line for Fisk
-    interval2Key = KbName('KP_Down'); % Make sure to use this line for Fisk
+   % interval1Key = KbName('KP_End'); % Make sure to use this line for Fisk
+   % interval2Key = KbName('KP_Down'); % Make sure to use this line for Fisk
+    interval1Key = KbName(11); % Make sure to use this line for Fisk
+    interval2Key = KbName(13); % Make sure to use this line for Fisk
+    interval1Key = KbName('1'); % Make sure to use this line for Link214 - 1 in the top numbers
+    interval2Key = KbName('0'); % Make sure to use this line for Link214 - 0 top numbers
+    interval1Key = KbName('KP_End'); % Make sure to use this line for Link214 - 1 on the keypad
+    interval2Key = KbName('KP_Next'); % Make sure to use this line for Link214 - 3 on the keypad
 end
     
 
@@ -262,8 +268,8 @@ end;
 % make sounds for feedback, etc.
 introsnd=makesnd(600,.2,.6);
 intervalsnd=makesnd(300,exptdesign.duration,.6);
-corrsnd=makesnd(400,.09,.6);
-wrongsnd=makesnd(200,.09,.7);
+corrsnd=makesnd(800,.2,.6);
+wrongsnd=makesnd(400,.2,.7);
 
 % this is the screen upon which the image is to be displayed.
 screenNumbers = Screen('Screens'); % identify number of screens
@@ -342,9 +348,9 @@ starttime=GetSecs;
 adaptTime = adaptseconds;
 adaptpause(w,wrect,adaptTime,0);
 
-Snd('Open'); % open the sound buffer
-Snd('Play',introsnd,SND_RATE); Snd('Play',corrsnd,SND_RATE); Snd('Play',wrongsnd,SND_RATE);
-%sound(introsnd); 
+##Snd('Open'); % open the sound buffer
+##Snd('Play',introsnd,SND_RATE); Snd('Play',corrsnd,SND_RATE); Snd('Play',wrongsnd,SND_RATE);
+sound(introsnd); 
 
 FlushEvents;
 WaitSecs(1);
@@ -516,9 +522,11 @@ for b = 1:length(noiseCondition) % for length of blocks
             if (response > 0)
                 correct=(response==corresp);
                     if correct
-                        err=Snd('Play',corrsnd,SND_RATE);
+##                        err=Snd('Play',corrsnd,SND_RATE);
+                        sound(corrsnd)
                     else
-                        err=Snd('Play',wrongsnd,SND_RATE);
+##                        err=Snd('Play',wrongsnd,SND_RATE);
+                        sound(wrongsnd)
                     end
             end
 
